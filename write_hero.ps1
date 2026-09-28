@@ -1,0 +1,1 @@
+$file = 'c:\Users\Admin\Desktop\portfolio\portfolio-website\src\components\sections\HeroContent.tsx'
