@@ -1,52 +1,11 @@
-import { useState } from 'react';
 import { portfolioData } from '../../data/portfolio';
 import { useIntersectionObserver } from '../../hooks';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card';
 import { Badge } from '../ui/Badge';
-import { Button } from '../ui/Button';
-import { Mail, MapPin, User, GitBranch, X, Send, CheckCircle, AlertCircle, Loader2, MessageSquare, Sparkles } from 'lucide-react';
+import { Mail, MapPin, User, GitBranch, X, MessageSquare, Sparkles } from 'lucide-react';
 
 export function Contact() {
   const [sectionRef, isVisible] = useIntersectionObserver();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-  const [errors, setErrors] = useState<Partial<typeof formData>>({});
-
-  const validateForm = () => {
-    const newErrors: Partial<typeof formData> = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Invalid email format';
-    if (!formData.subject.trim()) newErrors.subject = 'Subject is required';
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
-    else if (formData.message.length < 10) newErrors.message = 'Message must be at least 10 characters';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-
-    setStatus('submitting');
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setStatus('success');
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setTimeout(() => setStatus('idle'), 5000);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    if (errors[name as keyof typeof errors]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
-    }
-  };
 
   return (
     <section
@@ -62,14 +21,7 @@ export function Contact() {
           isVisible={isVisible}
         />
 
-        <ContactContent
-          isVisible={isVisible}
-          formData={formData}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          errors={errors}
-          status={status}
-        />
+        <ContactContent isVisible={isVisible} />
       </div>
     </section>
   );
@@ -95,32 +47,10 @@ function SectionHeader({ title, subtitle, isVisible }: { title: string; subtitle
   );
 }
 
-function ContactContent({
-  isVisible,
-  formData,
-  handleChange,
-  handleSubmit,
-  errors,
-  status,
-}: {
-  isVisible: boolean;
-  formData: { name: string; email: string; subject: string; message: string };
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  handleSubmit: (e: React.FormEvent) => void;
-  errors: Partial<{ name: string; email: string; subject: string; message: string }>;
-  status: 'idle' | 'submitting' | 'success' | 'error';
-}) {
+function ContactContent({ isVisible }: { isVisible: boolean }) {
   return (
     <div className="mt-12 grid lg:grid-cols-3 gap-8">
       <ContactInfo isVisible={isVisible} />
-      <ContactForm
-        isVisible={isVisible}
-        formData={formData}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        errors={errors}
-        status={status}
-      />
     </div>
   );
 }
@@ -239,101 +169,7 @@ function ContactInfo({ isVisible }: { isVisible: boolean }) {
   );
 }
 
-function ContactForm({
-  isVisible,
-  formData,
-  handleChange,
-  handleSubmit,
-  errors,
-  status,
-}: {
-  isVisible: boolean;
-  formData: { name: string; email: string; subject: string; message: string };
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  handleSubmit: (e: React.FormEvent) => void;
-  errors: Partial<{ name: string; email: string; subject: string; message: string }>;
-  status: 'idle' | 'submitting' | 'success' | 'error';
-}) {
-  return (
-    <div className="lg:col-span-2" style={{
-      animation: isVisible ? 'slideUp 0.6s ease-out 200ms forwards' : 'none',
-      opacity: isVisible ? 1 : 0,
-    }}>
-      <Card variant="outlined" padding="lg">
-        <CardHeader>
-          <CardTitle className="text-xl">Send a Message</CardTitle>
-          <p className="text-text-muted mt-2">Fill out the form and I'll get back to you as soon as possible.</p>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-            <div className="grid md:grid-cols-2 gap-6">
-              <FormField
-                label="Name"
-                name="name"
-                type="text"
-                value={formData.name}
-                onChange={handleChange}
-                error={errors.name}
-                placeholder="Your name"
-                required
-              />
-              <FormField
-                label="Email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                error={errors.email}
-                placeholder="your@email.com"
-                required
-              />
-            </div>
-            <FormField
-              label="Subject"
-              name="subject"
-              type="text"
-              value={formData.subject}
-              onChange={handleChange}
-              error={errors.subject}
-              placeholder="Project inquiry, collaboration, etc."
-              required
-            />
-            <FormField
-              label="Message"
-              name="message"
-              as="textarea"
-              value={formData.message}
-              onChange={handleChange}
-              error={errors.message}
-              placeholder="Tell me about your project..."
-              rows={5}
-              required
-            />
 
-            {status === 'success' && (
-              <div className="flex items-center gap-3 p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-green-500" role="alert">
-                <CheckCircle className="w-5 h-5 flex-shrink-0" />
-                <span>Message sent successfully! I'll get back to you soon.</span>
-              </div>
-            )}
-            {status === 'error' && (
-              <div className="flex items-center gap-3 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500" role="alert">
-                <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                <span>Something went wrong. Please try again or email me directly.</span>
-              </div>
-            )}
-
-            <Button type="submit" className="w-full md:w-auto" disabled={status === 'submitting'}>
-              {status === 'submitting' && <Loader2 className="w-5 h-5 mr-2 animate-spin" />}
-              {status === 'submitting' ? 'Sending...' : 'Send Message'}
-              <Send className="w-5 h-5 ml-2" aria-hidden="true" />
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
 
 function ContactItem({
   icon: Icon,
@@ -363,71 +199,3 @@ function ContactItem({
   );
 }
 
-function FormField({
-  label,
-  name,
-  type = 'text',
-  value,
-  onChange,
-  error,
-  placeholder,
-  required,
-  as = 'input',
-  rows,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  error?: string;
-  placeholder?: string;
-  required?: boolean;
-  as?: 'input' | 'textarea';
-  rows?: number;
-}) {
-  const id = `contact-${name}`;
-  return (
-    <div>
-      <label htmlFor={id} className="block text-sm font-medium text-text mb-2">
-        {label} {required && <span className="text-primary" aria-hidden="true">*</span>}
-      </label>
-      {as === 'textarea' ? (
-        <textarea
-          id={id}
-          name={name}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          rows={rows}
-          required={required}
-          aria-invalid={!!error}
-          aria-describedby={error ? `${id}-error` : undefined}
-          className={`w-full px-4 py-3 bg-surface border rounded-xl text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors ${
-            error ? 'border-red-500' : 'border-border'
-          }`}
-        />
-      ) : (
-        <input
-          id={id}
-          name={name}
-          type={type}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          required={required}
-          aria-invalid={!!error}
-          aria-describedby={error ? `${id}-error` : undefined}
-          className={`w-full px-4 py-3 bg-surface border rounded-xl text-text placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors ${
-            error ? 'border-red-500' : 'border-border'
-          }`}
-        />
-      )}
-      {error && (
-        <p id={`${id}-error`} className="mt-1.5 text-sm text-red-500" role="alert">
-          {error}
-        </p>
-      )}
-    </div>
-  );
-}
