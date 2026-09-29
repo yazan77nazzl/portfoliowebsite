@@ -161,7 +161,7 @@ function ContactInfo({ isVisible }: { isVisible: boolean }) {
                   <div className="text-sm text-text-muted">Typical Reply</div>
                 </div>
                 <div className="p-4 bg-surface rounded-xl min-w-0">
-                  <div className="font-heading text-2xl sm:text-3xl font-bold text-primary truncate">GMT+3</div>
+                  <div className="font-heading text-xl sm:text-2xl font-bold text-primary">GMT+3</div>
                   <div className="text-sm text-text-muted">Timezone</div>
                 </div>
               </div>
