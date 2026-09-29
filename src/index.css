@@ -74,11 +74,8 @@
     50% { transform: translateY(-6px); }
   }
   @keyframes frame-sweep {
-    0%   { transform: translate(-50%, -50%); }
-    25%  { transform: translate(50%, -50%); }
-    50%  { transform: translate(50%, 50%); }
-    75%  { transform: translate(-50%, 50%); }
-    100% { transform: translate(-50%, -50%); }
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
   }
 }
 

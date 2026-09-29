@@ -171,18 +171,18 @@ function FloatingCard({
 function ProfilePhoto() {
   return (
     <div className="relative flex justify-center">
-      {/* Frame wrapper – a bit larger than the portrait to show the rectangular frame */}
-      <div className="relative p-4 rounded-2xl">
-        {/* Ambient soft glow behind the frame */}
+      {/* Frame wrapper matching portrait size */}
+      <div className="relative aspect-square w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[560px]">
+        {/* Ambient soft glow around the frame */}
         <div
-          className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-primary via-accent to-primary opacity-10 blur-3xl"
+          className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-primary via-accent to-primary opacity-10 blur-2xl -inset-2"
           aria-hidden="true"
         />
 
-        {/* Outer thin refined border */}
+        {/* Base thin border */}
         <div className="absolute inset-0 rounded-2xl border border-border/40" aria-hidden="true" />
 
-        {/* Inner subtle highlight for depth */}
+        {/* Inner highlight for depth */}
         <div
           className="absolute inset-0 rounded-2xl pointer-events-none"
           style={{
@@ -192,24 +192,23 @@ function ProfilePhoto() {
           aria-hidden="true"
         />
 
-        {/* Animated light sweep moving along the rectangular edges */}
+        {/* Animated light sweep along the border */}
         <div
           className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none animate-frame-sweep"
+          style={{
+            // mask to reveal only the border ring (donut)
+            mask: 'linear-gradient(black, black) content-box, linear-gradient(black, black) border-box',
+            WebkitMask: 'linear-gradient(black, black) content-box, linear-gradient(black, black) border-box',
+            maskComposite: 'exclude',
+            WebkitMaskComposite: 'xor',
+            background: 'linear-gradient(90deg, transparent, rgb(var(--color-accent-rgb) / 0.25), transparent)',
+            backgroundSize: '200% 100%',
+          }}
           aria-hidden="true"
-        >
-          <div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/30 to-transparent"
-            style={{
-              // The gradient is twice as wide as the frame; animation translates it along the perimeter
-              width: '200%',
-              height: '200%',
-              transformOrigin: 'center center',
-            }}
-          />
-        </div>
+        />
 
         {/* Portrait container – unchanged size */}
-        <div className="relative aspect-square w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[560px] rounded-2xl overflow-hidden shadow-2xl bg-surface">
+        <div className="relative aspect-square w-full h-full rounded-2xl overflow-hidden shadow-2xl bg-surface">
           <img
             src={profilePhoto}
             alt="Yazan Nazzal - Full Stack Developer"
