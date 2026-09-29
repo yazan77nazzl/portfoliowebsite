@@ -169,7 +169,7 @@ function AboutSidebar({
           <InfoRow icon={MapPin} label="Location" value={location} />
           <InfoRow icon={Mail} label="Email" value={email} href={`mailto:${email}`} />
           <InfoRow icon={Phone} label="Phone" value={phone} href={`tel:${phone}`} />
-          <InfoRow icon={GitBranch} label="GitHub" value="YazanNazal" href={github} external />
+          <InfoRow icon={GitBranch} label="GitHub" value="yazan77nazzl/portfoliowebsite" href={github} external />
           <InfoRow icon={User} label="LinkedIn" value="Yazan Nazzal" href={linkedin} external />
         </div>
       </Card>
