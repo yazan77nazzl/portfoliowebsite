@@ -245,9 +245,18 @@ function Typewriter({ prefersReducedMotion }: { prefersReducedMotion: boolean })
     return () => clearTimeout(timeout);
   }, [index, deleting, pause, prefersReducedMotion]);
  
+  // Premium gradient + subtle glow via inline style (works with bg-clip-text)
+  const textStyle: React.CSSProperties = {
+    background: "linear-gradient(135deg, #60a5fa 0%, #06b6d4 50%, #60a5fa 100%)",
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+    color: "transparent",
+    filter: "drop-shadow(0 0 6px rgba(96,165,250,0.35))",
+  };
+ 
   return (
     <>
-      <span className="gradient-text text-2xl sm:text-3xl lg:text-4xl font-medium">{display}</span>
+      <span style={textStyle} className="text-3xl sm:text-4xl lg:text-5xl font-medium">{display}</span>
       {!prefersReducedMotion && <span className="animate-cursor-blink text-primary ml-1" aria-hidden="true">|</span>}
     </>
   );
@@ -291,7 +300,7 @@ function HeroContent({
         >
           <ProfilePhoto prefersReducedMotion={prefersReducedMotion} />
         </div>
-        <div className="self-start w-full mt-16 text-left">
+        <div className="self-start w-full mt-24 text-left">
           <Typewriter prefersReducedMotion={prefersReducedMotion} />
         </div>
 
