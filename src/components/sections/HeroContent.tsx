@@ -169,41 +169,51 @@ function FloatingCard({
 }
 
 function ProfilePhoto() {
+  const frameThickness = 20; // px
+  const frameStyle: React.CSSProperties = {
+    inset: `-${frameThickness}px`,
+    borderRadius: `calc(1.5rem + ${frameThickness}px)`,
+  };
+
   return (
     <div className="relative flex justify-center">
-      {/* Frame wrapper matching portrait size */}
+      {/* Frame wrapper – same size as portrait container */}
       <div className="relative aspect-square w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[560px]">
-        {/* Ambient soft glow around the frame */}
+        {/* Premium physical frame drawn behind the image */}
         <div
-          className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-primary via-accent to-primary opacity-10 blur-2xl -inset-2"
-          aria-hidden="true"
-        />
-
-        {/* Base thin border */}
-        <div className="absolute inset-0 rounded-2xl border border-border/40" aria-hidden="true" />
-
-        {/* Inner highlight for depth */}
-        <div
-          className="absolute inset-0 rounded-2xl pointer-events-none"
+          className="absolute pointer-events-none -z-10"
           style={{
-            boxShadow:
-              'inset 0 0 0 1px rgb(var(--color-primary-rgb) / 0.1), inset 0 -4px 8px -4px rgb(0 0 0 / 0.06), inset 0 4px 8px -4px rgb(255 255 255 / 0.03)',
+            ...frameStyle,
+            background: 'linear-gradient(135deg, #1e3a8a 0%, #06b6d4 50%, #1e3a8a 100%)',
+            boxShadow: `
+              0 ${frameThickness}px ${frameThickness * 2}px -${frameThickness}px rgba(0,0,0,0.4),
+              inset 0 -2px 4px rgba(255,255,255,0.15),
+              inset 0 2px 4px rgba(0,0,0,0.2),
+              inset 0 0 0 1px rgba(30,58,138,0.3)
+            `,
           }}
           aria-hidden="true"
         />
 
-        {/* Animated light sweep along the border */}
+        {/* Subtle animated light reflection on the frame surface */}
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none animate-frame-sweep"
+          className="absolute pointer-events-none -z-10 animate-frame-sweep"
           style={{
-            // mask to reveal only the border ring (donut)
+            ...frameStyle,
+            // mask to keep only the frame ring
             mask: 'linear-gradient(black, black) content-box, linear-gradient(black, black) border-box',
             WebkitMask: 'linear-gradient(black, black) content-box, linear-gradient(black, black) border-box',
             maskComposite: 'exclude',
             WebkitMaskComposite: 'xor',
-            background: 'linear-gradient(90deg, transparent, rgb(var(--color-accent-rgb) / 0.25), transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(6,182,212,0.25), transparent)',
             backgroundSize: '200% 100%',
           }}
+          aria-hidden="true"
+        />
+
+        {/* Ambient soft glow around the frame */}
+        <div
+          className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-primary via-accent to-primary opacity-10 blur-2xl -inset-2"
           aria-hidden="true"
         />
 
