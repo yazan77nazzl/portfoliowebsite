@@ -171,55 +171,63 @@ function FloatingCard({
 function ProfilePhoto() {
   return (
     <div className="relative flex justify-center">
-      {/* Ambient soft glow behind the frame */}
-      <div
-        className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-primary via-accent to-primary opacity-10 blur-3xl"
-        aria-hidden="true"
-      />
-
-      {/* Base subtle border matching design system */}
-      <div className="absolute inset-0 rounded-2xl border border-border/40" aria-hidden="true" />
-
-      {/* Gradient border ring with slow rotating highlight */}
-      <div
-        className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-primary via-accent to-primary opacity-30 animate-frame-rotate"
-        style={{
-          // mask creates a thin ring so only the border is visible
-          mask: 'radial-gradient(circle at center, transparent 92%, black 93%)',
-          WebkitMask: 'radial-gradient(circle at center, transparent 92%, black 93%)',
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Inner highlight for depth */}
-      <div
-        className="absolute inset-0 rounded-2xl pointer-events-none"
-        style={{
-          boxShadow:
-            'inset 0 0 0 1px rgb(var(--color-primary-rgb) / 0.12), inset 0 -4px 8px -4px rgb(0 0 0 / 0.08), inset 0 4px 8px -4px rgb(255 255 255 / 0.04)',
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Portrait container – unchanged size */}
-      <div className="relative aspect-square w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[560px] rounded-2xl overflow-hidden shadow-2xl bg-surface">
-        <img
-          src={profilePhoto}
-          alt="Yazan Nazzal - Full Stack Developer"
-          className="w-full h-full object-cover object-center"
-          loading="eager"
-          fetchPriority="high"
-          width={560}
-          height={560}
-        />
-        {/* Subtle inner highlight on the image itself */}
+      {/* Frame wrapper – a bit larger than the portrait to show the rectangular frame */}
+      <div className="relative p-4 rounded-2xl">
+        {/* Ambient soft glow behind the frame */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-primary via-accent to-primary opacity-10 blur-3xl"
+          aria-hidden="true"
+        />
+
+        {/* Outer thin refined border */}
+        <div className="absolute inset-0 rounded-2xl border border-border/40" aria-hidden="true" />
+
+        {/* Inner subtle highlight for depth */}
+        <div
+          className="absolute inset-0 rounded-2xl pointer-events-none"
           style={{
-            boxShadow: 'inset 0 -2px 4px -2px rgb(0 0 0 / 0.1), inset 0 2px 4px -2px rgb(255 255 255 / 0.1)',
+            boxShadow:
+              'inset 0 0 0 1px rgb(var(--color-primary-rgb) / 0.1), inset 0 -4px 8px -4px rgb(0 0 0 / 0.06), inset 0 4px 8px -4px rgb(255 255 255 / 0.03)',
           }}
           aria-hidden="true"
         />
+
+        {/* Animated light sweep moving along the rectangular edges */}
+        <div
+          className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none animate-frame-sweep"
+          aria-hidden="true"
+        >
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/30 to-transparent"
+            style={{
+              // The gradient is twice as wide as the frame; animation translates it along the perimeter
+              width: '200%',
+              height: '200%',
+              transformOrigin: 'center center',
+            }}
+          />
+        </div>
+
+        {/* Portrait container – unchanged size */}
+        <div className="relative aspect-square w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[560px] rounded-2xl overflow-hidden shadow-2xl bg-surface">
+          <img
+            src={profilePhoto}
+            alt="Yazan Nazzal - Full Stack Developer"
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+            fetchPriority="high"
+            width={560}
+            height={560}
+          />
+          {/* Subtle inner highlight on the image itself */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              boxShadow: 'inset 0 -2px 4px -2px rgb(0 0 0 / 0.1), inset 0 2px 4px -2px rgb(255 255 255 / 0.1)',
+            }}
+            aria-hidden="true"
+          />
+        </div>
       </div>
     </div>
   );
