@@ -7,7 +7,7 @@ export const portfolioData: PortfolioData = {
     location: 'Ramallah, Palestine',
     email: 'Yazan98nazzal@gmail.com',
     phone: '+972 566 017 708',
-    github: 'https://github.com/yazan77nazzl/portfoliowebsite',
+    github: 'https://github.com/YazanNazal/portfoliowebsite',
     linkedin: 'https://www.linkedin.com/in/yazan-nazzal-124287239/',
     summary: 'Highly motivated and skilled Software Developer with comprehensive experience in frontend and full-stack development. Proficient in building scalable, maintainable, and performant applications using modern technologies such as React, React Native, Angular, and .NET Core. Strong problem solver with a passion for writing clean, efficient code and delivering elegant solutions that enhance user experience. Committed to continuous learning and contributing to innovative projects in dynamic team environments.',
   },
