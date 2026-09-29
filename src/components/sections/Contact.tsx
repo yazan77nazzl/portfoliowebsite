@@ -155,13 +155,13 @@ function ContactInfo({ isVisible }: { isVisible: boolean }) {
                 <Sparkles className="w-5 h-5 text-primary" aria-hidden="true" />
                 Quick Response
               </h4>
-              <div className="grid grid-cols-2 gap-4 text-center">
-                <div className="p-4 bg-surface rounded-xl min-w-[120px]">
-                  <div className="font-heading text-3xl font-bold text-primary">24h</div>
+              <div className="grid grid-cols-[auto_auto] gap-4 justify-center text-center">
+                <div className="p-3 bg-surface rounded-xl">
+                  <div className="font-heading text-2xl font-bold text-primary">24h</div>
                   <div className="text-sm text-text-muted">Typical Reply</div>
                 </div>
-                <div className="p-4 bg-surface rounded-xl min-w-[120px]">
-                  <div className="font-heading text-3xl font-bold text-primary">GMT+3</div>
+                <div className="p-3 bg-surface rounded-xl">
+                  <div className="font-heading text-2xl font-bold text-primary">GMT+3</div>
                   <div className="text-sm text-text-muted">Timezone</div>
                 </div>
               </div>
