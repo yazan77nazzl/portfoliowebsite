@@ -2,7 +2,7 @@ import { portfolioData } from '../../data/portfolio';
 import { useIntersectionObserver } from '../../hooks';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/Card';
 import { Badge } from '../ui/Badge';
-import { Mail, MapPin, User, GitBranch, X, MessageSquare, Sparkles } from 'lucide-react';
+import { Mail, MapPin, User, GitBranch, MessageSquare, Sparkles } from 'lucide-react';
 
 export function Contact() {
   const [sectionRef, isVisible] = useIntersectionObserver();
@@ -128,15 +128,7 @@ function ContactInfo({ isVisible }: { isVisible: boolean }) {
                       <GitBranch className="w-5 h-5 group-hover:scale-110 transition-transform" />
                     </a>
                   )}
-                  <a
-                    href="https://twitter.com/yazannazzal"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 bg-surface rounded-xl text-text-muted hover:text-primary hover:bg-primary/10 transition-all duration-200 group focus-ring"
-                    aria-label="Twitter"
-                  >
-                    <X className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                  </a>
+                  
                 </div>
               </div>
 

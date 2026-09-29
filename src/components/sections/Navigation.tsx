@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useIntersectionObserver } from '../../hooks';
 import { Button } from '../ui/Button';
-import { Menu, X } from 'lucide-react';
+import { Menu, ChevronRight } from 'lucide-react';
 
 const navItems = [
   { href: '#hero', label: 'Home' },
@@ -88,7 +88,7 @@ export function Navigation() {
               aria-controls="mobile-menu"
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <ChevronRight className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </nav>

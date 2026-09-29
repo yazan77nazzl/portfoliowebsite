@@ -1,5 +1,5 @@
 import { portfolioData } from '../../data/portfolio';
-import { User, GitBranch, X, Mail, MapPin, ArrowUp, Heart } from 'lucide-react';
+import { User, GitBranch, Mail, MapPin, ArrowUp, Heart } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -44,17 +44,7 @@ export function Footer() {
                   <GitBranch className="w-5 h-5" />
                 </a>
               )}
-              {portfolioData.personal.github && (
-                <a
-                  href={portfolioData.personal.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 bg-bg rounded-xl text-text-muted hover:text-primary hover:bg-primary/10 transition-colors"
-                  aria-label="Twitter"
-                >
-                  <X className="w-5 h-5" />
-                </a>
-              )}
+              
               <a
                 href={`mailto:${portfolioData.personal.email}`}
                 className="p-2 bg-bg rounded-xl text-text-muted hover:text-primary hover:bg-primary/10 transition-colors"
