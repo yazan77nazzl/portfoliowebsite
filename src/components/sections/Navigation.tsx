@@ -49,73 +49,91 @@ export function Navigation() {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-bg/90 backdrop-blur-md border-b border-border/50' : 'bg-transparent'
-      }`}
-      role="banner"
-    >
-      <nav className="max-w-7xl mx-auto px-6" aria-label="Main navigation">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <a href="#hero" className="font-heading text-xl font-bold text-text flex items-center gap-2" aria-label="Go to homepage">
-            <span className="text-primary">YN</span>
-            <span className="hidden sm:block">Yazan Nazzal</span>
-          </a>
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled ? 'bg-bg/90 backdrop-blur-md border-b border-border/50' : 'bg-transparent'
+        }`}
+        role="banner"
+      >
+        <nav className="max-w-7xl mx-auto px-6" aria-label="Main navigation">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            {/* Logo */}
+            <a href="#hero" className="font-heading text-xl font-bold text-text flex items-center gap-2" aria-label="Go to homepage">
+              <span className="text-primary">YN</span>
+              <span className="hidden sm:block">Yazan Nazzal</span>
+            </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.href}
-                href={item.href}
-                label={item.label}
-                isActive={activeSection === item.href}
-                onClick={scrollToSection}
-              />
-            ))}
-            <Button variant="primary" size="sm" asChild>
-              <a href="#contact">Get In Touch</a>
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 rounded-lg text-text hover:bg-surface transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-expanded={isMobileMenuOpen}
-            aria-controls="mobile-menu"
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div id="mobile-menu" className="lg:hidden py-4 border-t border-border/50 animate-slideDown">
-            <div className="flex flex-col gap-2">
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-8">
               {navItems.map((item) => (
-                <button
+                <NavLink
                   key={item.href}
-                  onClick={() => scrollToSection(item.href)}
-                  className={`px-4 py-3 rounded-xl text-left transition-colors ${
-                    activeSection === item.href
-                      ? 'bg-primary/10 text-primary font-medium'
-                      : 'text-text-muted hover:text-text hover:bg-surface'
-                  }`}
-                >
-                  {item.label}
-                </button>
+                  href={item.href}
+                  label={item.label}
+                  isActive={activeSection === item.href}
+                  onClick={scrollToSection}
+                />
               ))}
-              <Button variant="primary" className="mt-4 w-full" asChild>
+              <Button variant="primary" size="sm" asChild>
                 <a href="#contact">Get In Touch</a>
               </Button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="lg:hidden p-2 rounded-lg text-text hover:bg-surface transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
-        )}
-      </nav>
-    </header>
+        </nav>
+      </header>
+
+      {/* Mobile Side Drawer */}
+      <>
+        {/* Backdrop */}
+        <div
+          className={`fixed inset-0 z-40 bg-black/30 backdrop-blur-sm lg:hidden transition-opacity duration-300 ${
+            isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
+          onClick={() => setIsMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+        {/* Drawer */}
+        <div
+          id="mobile-menu"
+          className={`fixed top-0 right-0 z-50 h-full w-full max-w-sm lg:hidden bg-bg/90 backdrop-blur-md border-l border-border/50 overflow-y-auto transition-transform duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+          role="navigation"
+          aria-label="Mobile navigation"
+        >
+          <div className="flex flex-col gap-2 p-6 pt-20">
+            {navItems.map((item) => (
+              <button
+                key={item.href}
+                onClick={() => scrollToSection(item.href)}
+                className={`px-4 py-3 rounded-xl text-left transition-colors ${
+                  activeSection === item.href
+                    ? 'bg-primary/10 text-primary font-medium'
+                    : 'text-text-muted hover:text-text hover:bg-surface'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+            <Button variant="primary" className="mt-4 w-full" asChild>
+              <a href="#contact">Get In Touch</a>
+            </Button>
+          </div>
+        </div>
+      </>
+    </>
   );
 }
 
