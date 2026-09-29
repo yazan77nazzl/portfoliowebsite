@@ -57,7 +57,7 @@ function ContactContent({ isVisible }: { isVisible: boolean }) {
 
 function ContactInfo({ isVisible }: { isVisible: boolean }) {
   return (
-    <div className="space-y-6" style={{
+    <div style={{
       animation: isVisible ? 'slideUp 0.6s ease-out forwards' : 'none',
       opacity: isVisible ? 1 : 0,
     }}>
@@ -76,94 +76,98 @@ function ContactInfo({ isVisible }: { isVisible: boolean }) {
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your team.
           </p>
         </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="space-y-4">
-            <ContactItem
-              icon={Mail}
-              label="Email"
-              value={portfolioData.personal.email}
-              href={`mailto:${portfolioData.personal.email}`}
-            />
-            <ContactItem
-              icon={MapPin}
-              label="Location"
-              value={portfolioData.personal.location}
-            />
-            {portfolioData.personal.phone && (
+        <CardContent>
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Contact Details */}
+            <div className="flex-1 space-y-4">
+              <ContactItem
+                icon={Mail}
+                label="Email"
+                value={portfolioData.personal.email}
+                href={`mailto:${portfolioData.personal.email}`}
+              />
               <ContactItem
                 icon={MapPin}
-                label="Phone"
-                value={portfolioData.personal.phone}
-                href={`tel:${portfolioData.personal.phone}`}
+                label="Location"
+                value={portfolioData.personal.location}
               />
-            )}
-          </div>
-
-          <div className="pt-6 border-t border-border/50">
-            <h4 className="font-semibold text-text mb-4 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-primary" aria-hidden="true" />
-              Connect
-            </h4>
-            <div className="flex items-center gap-3">
-              {portfolioData.personal.linkedin && (
-                <a
-                  href={portfolioData.personal.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-surface rounded-xl text-text-muted hover:text-primary hover:bg-primary/10 transition-all duration-200 group focus-ring"
-                  aria-label="LinkedIn"
-                >
-                  <User className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                </a>
+              {portfolioData.personal.phone && (
+                <ContactItem
+                  icon={MapPin}
+                  label="Phone"
+                  value={portfolioData.personal.phone}
+                  href={`tel:${portfolioData.personal.phone}`}
+                />
               )}
-              {portfolioData.personal.github && (
-                <a
-                  href={portfolioData.personal.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-surface rounded-xl text-text-muted hover:text-primary hover:bg-primary/10 transition-all duration-200 group focus-ring"
-                  aria-label="GitHub"
-                >
-                  <GitBranch className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                </a>
-              )}
-              <a
-                href="https://twitter.com/yazannazzal"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 bg-surface rounded-xl text-text-muted hover:text-primary hover:bg-primary/10 transition-all duration-200 group focus-ring"
-                aria-label="Twitter"
-              >
-                <X className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              </a>
             </div>
-          </div>
 
-          <div className="pt-6 border-t border-border/50">
-            <h4 className="font-semibold text-text mb-4">Availability</h4>
-            <div className="flex items-center gap-3 p-4 bg-surface-hover rounded-xl">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" aria-hidden="true" />
-              <span className="text-text-muted">Open for freelance & full-time opportunities</span>
+            {/* Connect & Availability */}
+            <div className="flex-1 space-y-6">
+              <div>
+                <h4 className="font-semibold text-text mb-3">Connect</h4>
+                <div className="flex gap-3">
+                  {portfolioData.personal.linkedin && (
+                    <a
+                      href={portfolioData.personal.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-surface rounded-xl text-text-muted hover:text-primary hover:bg-primary/10 transition-all duration-200 group focus-ring"
+                      aria-label="LinkedIn"
+                    >
+                      <User className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                    </a>
+                  )}
+                  {portfolioData.personal.github && (
+                    <a
+                      href={portfolioData.personal.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-surface rounded-xl text-text-muted hover:text-primary hover:bg-primary/10 transition-all duration-200 group focus-ring"
+                      aria-label="GitHub"
+                    >
+                      <GitBranch className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                    </a>
+                  )}
+                  <a
+                    href="https://twitter.com/yazannazzal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-surface rounded-xl text-text-muted hover:text-primary hover:bg-primary/10 transition-all duration-200 group focus-ring"
+                    aria-label="Twitter"
+                  >
+                    <X className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-border/50">
+                <h4 className="font-semibold text-text mb-4">Availability</h4>
+                <div className="flex items-center gap-3 p-4 bg-surface-hover rounded-xl">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" aria-hidden="true" />
+                  <span className="text-text-muted">Open for freelance & full-time opportunities</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Response */}
+            <div className="flex-1 space-y-4">
+              <h4 className="font-semibold text-text mb-4 flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-primary" aria-hidden="true" />
+                Quick Response
+              </h4>
+              <div className="grid grid-cols-2 gap-4 text-center">
+                <div className="p-4 bg-surface rounded-xl">
+                  <div className="font-heading text-3xl font-bold text-primary">24h</div>
+                  <div className="text-sm text-text-muted">Typical Reply</div>
+                </div>
+                <div className="p-4 bg-surface rounded-xl">
+                  <div className="font-heading text-3xl font-bold text-primary">GMT+3</div>
+                  <div className="text-sm text-text-muted">Timezone</div>
+                </div>
+              </div>
             </div>
           </div>
         </CardContent>
-      </Card>
-
-      <Card variant="outlined" padding="lg">
-        <h4 className="font-semibold text-text mb-4 flex items-center gap-2">
-          <Sparkles className="w-5 h-5 text-primary" aria-hidden="true" />
-          Quick Response
-        </h4>
-        <div className="grid grid-cols-2 gap-4 text-center">
-          <div className="p-4 bg-surface rounded-xl">
-            <div className="font-heading text-3xl font-bold text-primary">24h</div>
-            <div className="text-sm text-text-muted">Typical Reply</div>
-          </div>
-          <div className="p-4 bg-surface rounded-xl">
-            <div className="font-heading text-3xl font-bold text-primary">GMT+3</div>
-            <div className="text-sm text-text-muted">Timezone</div>
-          </div>
-        </div>
       </Card>
     </div>
   );
