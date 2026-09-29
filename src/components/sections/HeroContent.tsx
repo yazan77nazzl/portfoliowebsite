@@ -1,5 +1,5 @@
 ﻿import { GitBranch, User, ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import profilePhoto from '/profile-photo.jpg';
 
 function HeroContactInfo({
@@ -208,42 +208,49 @@ function Typewriter({ prefersReducedMotion }: { prefersReducedMotion: boolean })
   const [deleting, setDeleting] = useState(false);
   const [pause, setPause] = useState(false);
  
+  // Keep a ref with the latest state for the timer closure
+  const stateRef = useRef({ display, index, deleting, pause });
+  stateRef.current = { display, index, deleting, pause };
+ 
   useEffect(() => {
     if (prefersReducedMotion) {
       setDisplay(text);
       return;
     }
-    let timeout: ReturnType<typeof setTimeout>;
+    let timeoutId: ReturnType<typeof setTimeout>;
+ 
     const tick = () => {
-      if (pause) {
-        timeout = setTimeout(tick, 1000);
+      const s = stateRef.current;
+      if (s.pause) {
+        timeoutId = setTimeout(tick, 1000);
         return;
       }
-      if (!deleting) {
-        if (index < text.length) {
-          setDisplay(text.slice(0, index + 1));
-          setIndex(index + 1);
-          timeout = setTimeout(tick, 80);
+      if (!s.deleting) {
+        if (s.index < text.length) {
+          setDisplay(text.slice(0, s.index + 1));
+          setIndex(s.index + 1);
+          timeoutId = setTimeout(tick, 80);
         } else {
           setDeleting(true);
           setPause(true);
-          timeout = setTimeout(() => { setPause(false); tick(); }, 1500);
+          timeoutId = setTimeout(() => { setPause(false); tick(); }, 1500);
         }
       } else {
-        if (index > 0) {
-          setDisplay(text.slice(0, index - 1));
-          setIndex(index - 1);
-          timeout = setTimeout(tick, 40);
+        if (s.index > 0) {
+          setDisplay(text.slice(0, s.index - 1));
+          setIndex(s.index - 1);
+          timeoutId = setTimeout(tick, 40);
         } else {
           setDeleting(false);
           setPause(true);
-          timeout = setTimeout(() => { setPause(false); tick(); }, 800);
+          timeoutId = setTimeout(() => { setPause(false); tick(); }, 800);
         }
       }
     };
+ 
     tick();
-    return () => clearTimeout(timeout);
-  }, [index, deleting, pause, prefersReducedMotion]);
+    return () => clearTimeout(timeoutId);
+  }, [prefersReducedMotion]);
  
   // Premium gradient + subtle glow via inline style (works with bg-clip-text)
   const textStyle: React.CSSProperties = {
