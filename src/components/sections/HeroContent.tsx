@@ -246,10 +246,10 @@ function Typewriter({ prefersReducedMotion }: { prefersReducedMotion: boolean })
   }, [index, deleting, pause, prefersReducedMotion]);
  
   return (
-    <div className="mt-6 flex items-center justify-center gap-1 text-lg sm:text-xl font-medium text-text-muted">
-      <span>{display}</span>
-      {!prefersReducedMotion && <span className="animate-cursor-blink text-primary" aria-hidden="true">|</span>}
-    </div>
+    <>
+      <span className="gradient-text text-2xl sm:text-3xl lg:text-4xl font-medium">{display}</span>
+      {!prefersReducedMotion && <span className="animate-cursor-blink text-primary ml-1" aria-hidden="true">|</span>}
+    </>
   );
 }
 function HeroContent({
@@ -290,6 +290,8 @@ function HeroContent({
           className="relative w-full flex-shrink-0"
         >
           <ProfilePhoto prefersReducedMotion={prefersReducedMotion} />
+        </div>
+        <div className="self-start w-full mt-16 text-left">
           <Typewriter prefersReducedMotion={prefersReducedMotion} />
         </div>
 
