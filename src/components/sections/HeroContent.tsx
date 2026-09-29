@@ -1,4 +1,5 @@
 ﻿import { GitBranch, User, ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import profilePhoto from '/profile-photo.jpg';
 
 function HeroContactInfo({
@@ -168,162 +169,89 @@ function FloatingCard({
   );
 }
 
-function ProfilePhoto() {
-  const frameThickness = 20; // px
-  const outerRadius = `calc(1.5rem + ${frameThickness}px)`; // portrait rounded-2xl = 1.5rem
-  const frameInset = `-${frameThickness}px`;
-
-  // Shared style for the frame ring (used for background and mask)
-  const frameRingStyle: React.CSSProperties = {
-    inset: frameInset,
-    borderRadius: outerRadius,
-  };
-
-  // Edge strip base style
-  const edgeStyle: React.CSSProperties = {
-    position: 'absolute',
-    background: 'linear-gradient(90deg, transparent, rgba(6,182,212,0.35), transparent)',
-    backgroundSize: '200% 100%',
-    opacity: 0.6,
-  };
-
-  const verticalEdgeStyle: React.CSSProperties = {
-    ...edgeStyle,
-    background: 'linear-gradient(180deg, transparent, rgba(6,182,212,0.35), transparent)',
-    backgroundSize: '100% 200%',
-  };
+function ProfilePhoto({ prefersReducedMotion }: { prefersReducedMotion: boolean }) {
+  const ft = 20;
+  const radius = `calc(1.5rem + ${ft}px)`;
+  const inset = `-${ft}px`;
+  const ring = { inset, borderRadius: radius };
+  const edge = { position: 'absolute' as const, background: 'linear-gradient(90deg, transparent, rgba(6,182,212,0.35), transparent)', backgroundSize: '200% 100%', opacity: 0.6 };
+  const vEdge = { ...edge, background: 'linear-gradient(180deg, transparent, rgba(6,182,212,0.35), transparent)', backgroundSize: '100% 200%' };
+  const hCls = prefersReducedMotion ? '' : 'animate-edge-h';
+  const vCls = prefersReducedMotion ? '' : 'animate-edge-v';
+  const cCls = prefersReducedMotion ? '' : 'animate-corner-pulse';
+  const rCls = prefersReducedMotion ? '' : 'animate-reflection';
 
   return (
     <div className="relative flex justify-center">
-      {/* Frame wrapper – same size as portrait container */}
       <div className="relative aspect-square w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[560px]">
-        {/* Base premium frame (metallic dark blue) */}
-        <div
-          className="absolute pointer-events-none -z-10"
-          style={{
-            ...frameRingStyle,
-            background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 30%, #06b6d4 50%, #1e3a8a 70%, #0f172a 100%)',
-            boxShadow: `
-              0 ${frameThickness}px ${frameThickness * 2}px -${frameThickness}px rgba(0,0,0,0.5),
-              inset 0 -2px 4px rgba(255,255,255,0.12),
-              inset 0 2px 4px rgba(0,0,0,0.25),
-              inset 0 0 0 1px rgba(30,58,138,0.4)
-            `,
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Top edge light strip */}
-        <div
-          className="absolute pointer-events-none -z-10 animate-frame-light-h"
-          style={{
-            ...edgeStyle,
-            top: frameInset,
-            left: frameInset,
-            right: frameInset,
-            height: frameThickness,
-            borderTopLeftRadius: outerRadius,
-            borderTopRightRadius: outerRadius,
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Bottom edge light strip */}
-        <div
-          className="absolute pointer-events-none -z-10 animate-frame-light-h"
-          style={{
-            ...edgeStyle,
-            bottom: frameInset,
-            left: frameInset,
-            right: frameInset,
-            height: frameThickness,
-            borderBottomLeftRadius: outerRadius,
-            borderBottomRightRadius: outerRadius,
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Left edge light strip */}
-        <div
-          className="absolute pointer-events-none -z-10 animate-frame-light-v"
-          style={{
-            ...verticalEdgeStyle,
-            top: frameInset,
-            bottom: frameInset,
-            left: frameInset,
-            width: frameThickness,
-            borderTopLeftRadius: outerRadius,
-            borderBottomLeftRadius: outerRadius,
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Right edge light strip */}
-        <div
-          className="absolute pointer-events-none -z-10 animate-frame-light-v"
-          style={{
-            ...verticalEdgeStyle,
-            top: frameInset,
-            bottom: frameInset,
-            right: frameInset,
-            width: frameThickness,
-            borderTopRightRadius: outerRadius,
-            borderBottomRightRadius: outerRadius,
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Corner pulse highlights */}
-        {['top-left', 'top-right', 'bottom-left', 'bottom-right'].map((corner, i) => (
-          <div
-            key={corner}
-            className="absolute pointer-events-none -z-10 animate-corner-pulse"
-            style={{
-              width: frameThickness * 1.5,
-              height: frameThickness * 1.5,
-              borderRadius: '50%',
-              background: 'radial-gradient(circle at center, rgba(6,182,212,0.5) 0%, transparent 70%)',
-              top: corner.startsWith('top') ? frameInset : 'auto',
-              bottom: corner.startsWith('bottom') ? frameInset : 'auto',
-              left: corner.endsWith('left') ? frameInset : 'auto',
-              right: corner.endsWith('right') ? frameInset : 'auto',
-              animationDelay: `${i * 1}s`,
-            }}
-            aria-hidden="true"
-          />
-        ))}
-
-        {/* Ambient soft glow around the frame */}
-        <div
-          className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-primary via-accent to-primary opacity-10 blur-2xl -inset-2"
-          aria-hidden="true"
-        />
-
-        {/* Portrait container – unchanged size */}
+        <div className="absolute pointer-events-none -z-10" style={{ ...ring, background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 30%, #06b6d4 50%, #1e3a8a 70%, #0f172a 100%)', boxShadow: `0 ${ft}px ${ft*2}px -${ft}px rgba(0,0,0,0.5), inset 0 -2px 4px rgba(255,255,255,0.12), inset 0 2px 4px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(30,58,138,0.4)` }} aria-hidden="true" />
+        <div className={`absolute pointer-events-none -z-10 ${hCls}`} style={{ ...edge, top: inset, left: inset, right: inset, height: ft, borderTopLeftRadius: radius, borderTopRightRadius: radius }} aria-hidden="true" />
+        <div className={`absolute pointer-events-none -z-10 ${hCls}`} style={{ ...edge, bottom: inset, left: inset, right: inset, height: ft, borderBottomLeftRadius: radius, borderBottomRightRadius: radius }} aria-hidden="true" />
+        <div className={`absolute pointer-events-none -z-10 ${vCls}`} style={{ ...vEdge, top: inset, bottom: inset, left: inset, width: ft, borderTopLeftRadius: radius, borderBottomLeftRadius: radius }} aria-hidden="true" />
+        <div className={`absolute pointer-events-none -z-10 ${vCls}`} style={{ ...vEdge, top: inset, bottom: inset, right: inset, width: ft, borderTopRightRadius: radius, borderBottomRightRadius: radius }} aria-hidden="true" />
+        {['top-left','top-right','bottom-left','bottom-right'].map((c,i)=>(<div key={c} className={`absolute pointer-events-none -z-10 ${cCls}`} style={{ width: ft*1.5, height: ft*1.5, borderRadius:'50%', background:'radial-gradient(circle at center, rgba(6,182,212,0.5) 0%, transparent 70%)', top: c.startsWith('top')?inset:'auto', bottom: c.startsWith('bottom')?inset:'auto', left: c.endsWith('left')?inset:'auto', right: c.endsWith('right')?inset:'auto', animationDelay: `${i*1}s` }} aria-hidden="true"/>))}
+        <div className={`absolute pointer-events-none -z-10 ${rCls}`} style={{ inset, borderRadius: radius, background: 'linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.08) 50%, transparent 70%)', backgroundSize: '200% 100%' }} aria-hidden="true" />
+        <div className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-primary via-accent to-primary opacity-10 blur-2xl -inset-2" aria-hidden="true" />
         <div className="relative aspect-square w-full h-full rounded-2xl overflow-hidden shadow-2xl bg-surface">
-          <img
-            src={profilePhoto}
-            alt="Yazan Nazzal - Full Stack Developer"
-            className="w-full h-full object-cover object-center"
-            loading="eager"
-            fetchPriority="high"
-            width={560}
-            height={560}
-          />
-          {/* Subtle inner highlight on the image itself */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              boxShadow: 'inset 0 -2px 4px -2px rgb(0 0 0 / 0.1), inset 0 2px 4px -2px rgb(255 255 255 / 0.1)',
-            }}
-            aria-hidden="true"
-          />
+          <img src={profilePhoto} alt="Yazan Nazzal - Full Stack Developer" className="w-full h-full object-cover object-center" loading="eager" fetchPriority="high" width={560} height={560} />
+          <div className="absolute inset-0 pointer-events-none" style={{ boxShadow: 'inset 0 -2px 4px -2px rgb(0 0 0 / 0.1), inset 0 2px 4px -2px rgb(255 255 255 / 0.1)' }} aria-hidden="true" />
         </div>
       </div>
     </div>
   );
 }
 
+function Typewriter({ prefersReducedMotion }: { prefersReducedMotion: boolean }) {
+  const text = "Software Engineer";
+  const [display, setDisplay] = useState("");
+  const [index, setIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+  const [pause, setPause] = useState(false);
+ 
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setDisplay(text);
+      return;
+    }
+    let timeout: ReturnType<typeof setTimeout>;
+    const tick = () => {
+      if (pause) {
+        timeout = setTimeout(tick, 1000);
+        return;
+      }
+      if (!deleting) {
+        if (index < text.length) {
+          setDisplay(text.slice(0, index + 1));
+          setIndex(index + 1);
+          timeout = setTimeout(tick, 80);
+        } else {
+          setDeleting(true);
+          setPause(true);
+          timeout = setTimeout(() => { setPause(false); tick(); }, 1500);
+        }
+      } else {
+        if (index > 0) {
+          setDisplay(text.slice(0, index - 1));
+          setIndex(index - 1);
+          timeout = setTimeout(tick, 40);
+        } else {
+          setDeleting(false);
+          setPause(true);
+          timeout = setTimeout(() => { setPause(false); tick(); }, 800);
+        }
+      }
+    };
+    tick();
+    return () => clearTimeout(timeout);
+  }, [index, deleting, pause, prefersReducedMotion]);
+ 
+  return (
+    <div className="mt-6 flex items-center justify-center gap-1 text-lg sm:text-xl font-medium text-text-muted">
+      <span>{display}</span>
+      {!prefersReducedMotion && <span className="animate-cursor-blink text-primary" aria-hidden="true">|</span>}
+    </div>
+  );
+}
 function HeroContent({
   name,
   title,
@@ -360,9 +288,9 @@ function HeroContent({
         {/* Profile Photo - Prominently at the top */}
         <div
           className="relative w-full flex-shrink-0"
-          style={{}}
         >
-          <ProfilePhoto />
+          <ProfilePhoto prefersReducedMotion={prefersReducedMotion} />
+          <Typewriter prefersReducedMotion={prefersReducedMotion} />
         </div>
 
         {/* Text Content - Below the photo */}

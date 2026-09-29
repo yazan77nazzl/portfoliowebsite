@@ -89,6 +89,24 @@
     0%, 100% { opacity: 0; transform: scale(0.8); }
     50% { opacity: 0.6; transform: scale(1); }
   }
+  @keyframes edge-move-h {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+  @keyframes edge-move-v {
+    0% { background-position: 50% 0%; }
+    100% { background-position: 50% 200%; }
+  }
+  @keyframes reflection-sweep {
+    0% { transform: translateX(-100%) skewX(-15deg); opacity: 0; }
+    20% { opacity: 0.4; }
+    80% { opacity: 0.4; }
+    100% { transform: translateX(200%) skewX(-15deg); opacity: 0; }
+  }
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -203,11 +221,31 @@
     animation: corner-pulse 4s ease-in-out infinite;
   }
 
+  .animate-edge-h {
+    animation: edge-move-h 10s linear infinite;
+  }
+
+  .animate-edge-v {
+    animation: edge-move-v 12s linear infinite;
+  }
+
+  .animate-reflection {
+    animation: reflection-sweep 8s ease-in-out infinite;
+  }
+
+  .animate-cursor-blink {
+    animation: cursor-blink 1s step-end infinite;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-frame-sweep,
     .animate-frame-light-h,
     .animate-frame-light-v,
-    .animate-corner-pulse {
+    .animate-corner-pulse,
+    .animate-edge-h,
+    .animate-edge-v,
+    .animate-reflection,
+    .animate-cursor-blink {
       animation: none;
     }
   }
