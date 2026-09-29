@@ -28,7 +28,7 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Update active section based on intersection observer
+  // Update active section based on intersection observer.
   useEffect(() => {
     const visibleSections = navItems
       .map((item, index) => ({ item, isVisible: sectionRefs[index][1] }))
