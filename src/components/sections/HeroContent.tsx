@@ -170,18 +170,37 @@ function FloatingCard({
 
 function ProfilePhoto() {
   return (
-    <div className="flex justify-center">
-      <div className="relative aspect-square max-w-[380px] w-full rounded-2xl overflow-hidden border border-border shadow-xl bg-surface">
+    <div className="relative flex justify-center">
+      {/* Outer animated glow ring */}
+      <div
+        className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-primary via-accent to-primary opacity-20 blur-2xl animate-pulse"
+        style={{
+          inset: '-12px',
+          filter: 'blur(30px)',
+          animationDuration: '4s',
+        }}
+        aria-hidden="true"
+      />
+      <div className="relative aspect-square w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[560px] rounded-2xl overflow-hidden border border-border/50 shadow-2xl bg-surface">
+        {/* Subtle inner border highlight */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            boxShadow:
+              'inset 0 0 0 1px rgb(var(--color-primary-rgb) / 0.15), inset 0 -4px 8px -4px rgb(0 0 0 / 0.1), inset 0 4px 8px -4px rgb(255 255 255 / 0.05)',
+          }}
+          aria-hidden="true"
+        />
         <img
           src={profilePhoto}
           alt="Yazan Nazzal - Full Stack Developer"
           className="w-full h-full object-cover object-center"
           loading="eager"
           fetchPriority="high"
-          width={380}
-          height={380}
+          width={560}
+          height={560}
         />
-        {/* Subtle inner highlight */}
+        {/* Inner subtle highlight */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
