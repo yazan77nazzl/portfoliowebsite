@@ -171,26 +171,38 @@ function FloatingCard({
 function ProfilePhoto() {
   return (
     <div className="relative flex justify-center">
-      {/* Outer animated glow ring */}
+      {/* Ambient soft glow behind the frame */}
       <div
-        className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-primary via-accent to-primary opacity-20 blur-2xl animate-pulse"
+        className="absolute inset-0 rounded-[inherit] bg-gradient-to-r from-primary via-accent to-primary opacity-10 blur-3xl"
+        aria-hidden="true"
+      />
+
+      {/* Base subtle border matching design system */}
+      <div className="absolute inset-0 rounded-2xl border border-border/40" aria-hidden="true" />
+
+      {/* Gradient border ring with slow rotating highlight */}
+      <div
+        className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-primary via-accent to-primary opacity-30 animate-frame-rotate"
         style={{
-          inset: '-12px',
-          filter: 'blur(30px)',
-          animationDuration: '4s',
+          // mask creates a thin ring so only the border is visible
+          mask: 'radial-gradient(circle at center, transparent 92%, black 93%)',
+          WebkitMask: 'radial-gradient(circle at center, transparent 92%, black 93%)',
         }}
         aria-hidden="true"
       />
-      <div className="relative aspect-square w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[560px] rounded-2xl overflow-hidden border border-border/50 shadow-2xl bg-surface">
-        {/* Subtle inner border highlight */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            boxShadow:
-              'inset 0 0 0 1px rgb(var(--color-primary-rgb) / 0.15), inset 0 -4px 8px -4px rgb(0 0 0 / 0.1), inset 0 4px 8px -4px rgb(255 255 255 / 0.05)',
-          }}
-          aria-hidden="true"
-        />
+
+      {/* Inner highlight for depth */}
+      <div
+        className="absolute inset-0 rounded-2xl pointer-events-none"
+        style={{
+          boxShadow:
+            'inset 0 0 0 1px rgb(var(--color-primary-rgb) / 0.12), inset 0 -4px 8px -4px rgb(0 0 0 / 0.08), inset 0 4px 8px -4px rgb(255 255 255 / 0.04)',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Portrait container – unchanged size */}
+      <div className="relative aspect-square w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[560px] rounded-2xl overflow-hidden shadow-2xl bg-surface">
         <img
           src={profilePhoto}
           alt="Yazan Nazzal - Full Stack Developer"
@@ -200,7 +212,7 @@ function ProfilePhoto() {
           width={560}
           height={560}
         />
-        {/* Inner subtle highlight */}
+        {/* Subtle inner highlight on the image itself */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
