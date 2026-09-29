@@ -156,12 +156,12 @@ function ContactInfo({ isVisible }: { isVisible: boolean }) {
                 Quick Response
               </h4>
               <div className="grid grid-cols-2 gap-4 text-center">
-                <div className="p-4 bg-surface rounded-xl">
-                  <div className="font-heading text-3xl font-bold text-primary">24h</div>
+                <div className="p-4 bg-surface rounded-xl min-w-0">
+                  <div className="font-heading text-2xl sm:text-3xl font-bold text-primary truncate">24h</div>
                   <div className="text-sm text-text-muted">Typical Reply</div>
                 </div>
-                <div className="p-4 bg-surface rounded-xl">
-                  <div className="font-heading text-3xl font-bold text-primary">GMT+3</div>
+                <div className="p-4 bg-surface rounded-xl min-w-0">
+                  <div className="font-heading text-2xl sm:text-3xl font-bold text-primary truncate">GMT+3</div>
                   <div className="text-sm text-text-muted">Timezone</div>
                 </div>
               </div>
