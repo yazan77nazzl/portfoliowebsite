@@ -77,6 +77,18 @@
     0% { background-position: 0% 50%; }
     100% { background-position: 200% 50%; }
   }
+  @keyframes frame-light-horizontal {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+  @keyframes frame-light-vertical {
+    0% { background-position: 50% 0%; }
+    100% { background-position: 50% 200%; }
+  }
+  @keyframes corner-pulse {
+    0%, 100% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 0.6; transform: scale(1); }
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -179,8 +191,23 @@
     animation: frame-sweep 12s linear infinite;
   }
 
+  .animate-frame-light-h {
+    animation: frame-light-horizontal 10s linear infinite;
+  }
+
+  .animate-frame-light-v {
+    animation: frame-light-vertical 12s linear infinite;
+  }
+
+  .animate-corner-pulse {
+    animation: corner-pulse 4s ease-in-out infinite;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .animate-frame-sweep {
+    .animate-frame-sweep,
+    .animate-frame-light-h,
+    .animate-frame-light-v,
+    .animate-corner-pulse {
       animation: none;
     }
   }

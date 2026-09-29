@@ -170,46 +170,128 @@ function FloatingCard({
 
 function ProfilePhoto() {
   const frameThickness = 20; // px
-  const frameStyle: React.CSSProperties = {
-    inset: `-${frameThickness}px`,
-    borderRadius: `calc(1.5rem + ${frameThickness}px)`,
+  const outerRadius = `calc(1.5rem + ${frameThickness}px)`; // portrait rounded-2xl = 1.5rem
+  const frameInset = `-${frameThickness}px`;
+
+  // Shared style for the frame ring (used for background and mask)
+  const frameRingStyle: React.CSSProperties = {
+    inset: frameInset,
+    borderRadius: outerRadius,
+  };
+
+  // Edge strip base style
+  const edgeStyle: React.CSSProperties = {
+    position: 'absolute',
+    background: 'linear-gradient(90deg, transparent, rgba(6,182,212,0.35), transparent)',
+    backgroundSize: '200% 100%',
+    opacity: 0.6,
+  };
+
+  const verticalEdgeStyle: React.CSSProperties = {
+    ...edgeStyle,
+    background: 'linear-gradient(180deg, transparent, rgba(6,182,212,0.35), transparent)',
+    backgroundSize: '100% 200%',
   };
 
   return (
     <div className="relative flex justify-center">
       {/* Frame wrapper – same size as portrait container */}
       <div className="relative aspect-square w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[560px]">
-        {/* Premium physical frame drawn behind the image */}
+        {/* Base premium frame (metallic dark blue) */}
         <div
           className="absolute pointer-events-none -z-10"
           style={{
-            ...frameStyle,
-            background: 'linear-gradient(135deg, #1e3a8a 0%, #06b6d4 50%, #1e3a8a 100%)',
+            ...frameRingStyle,
+            background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 30%, #06b6d4 50%, #1e3a8a 70%, #0f172a 100%)',
             boxShadow: `
-              0 ${frameThickness}px ${frameThickness * 2}px -${frameThickness}px rgba(0,0,0,0.4),
-              inset 0 -2px 4px rgba(255,255,255,0.15),
-              inset 0 2px 4px rgba(0,0,0,0.2),
-              inset 0 0 0 1px rgba(30,58,138,0.3)
+              0 ${frameThickness}px ${frameThickness * 2}px -${frameThickness}px rgba(0,0,0,0.5),
+              inset 0 -2px 4px rgba(255,255,255,0.12),
+              inset 0 2px 4px rgba(0,0,0,0.25),
+              inset 0 0 0 1px rgba(30,58,138,0.4)
             `,
           }}
           aria-hidden="true"
         />
 
-        {/* Subtle animated light reflection on the frame surface */}
+        {/* Top edge light strip */}
         <div
-          className="absolute pointer-events-none -z-10 animate-frame-sweep"
+          className="absolute pointer-events-none -z-10 animate-frame-light-h"
           style={{
-            ...frameStyle,
-            // mask to keep only the frame ring
-            mask: 'linear-gradient(black, black) content-box, linear-gradient(black, black) border-box',
-            WebkitMask: 'linear-gradient(black, black) content-box, linear-gradient(black, black) border-box',
-            maskComposite: 'exclude',
-            WebkitMaskComposite: 'xor',
-            background: 'linear-gradient(90deg, transparent, rgba(6,182,212,0.25), transparent)',
-            backgroundSize: '200% 100%',
+            ...edgeStyle,
+            top: frameInset,
+            left: frameInset,
+            right: frameInset,
+            height: frameThickness,
+            borderTopLeftRadius: outerRadius,
+            borderTopRightRadius: outerRadius,
           }}
           aria-hidden="true"
         />
+
+        {/* Bottom edge light strip */}
+        <div
+          className="absolute pointer-events-none -z-10 animate-frame-light-h"
+          style={{
+            ...edgeStyle,
+            bottom: frameInset,
+            left: frameInset,
+            right: frameInset,
+            height: frameThickness,
+            borderBottomLeftRadius: outerRadius,
+            borderBottomRightRadius: outerRadius,
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Left edge light strip */}
+        <div
+          className="absolute pointer-events-none -z-10 animate-frame-light-v"
+          style={{
+            ...verticalEdgeStyle,
+            top: frameInset,
+            bottom: frameInset,
+            left: frameInset,
+            width: frameThickness,
+            borderTopLeftRadius: outerRadius,
+            borderBottomLeftRadius: outerRadius,
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Right edge light strip */}
+        <div
+          className="absolute pointer-events-none -z-10 animate-frame-light-v"
+          style={{
+            ...verticalEdgeStyle,
+            top: frameInset,
+            bottom: frameInset,
+            right: frameInset,
+            width: frameThickness,
+            borderTopRightRadius: outerRadius,
+            borderBottomRightRadius: outerRadius,
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Corner pulse highlights */}
+        {['top-left', 'top-right', 'bottom-left', 'bottom-right'].map((corner, i) => (
+          <div
+            key={corner}
+            className="absolute pointer-events-none -z-10 animate-corner-pulse"
+            style={{
+              width: frameThickness * 1.5,
+              height: frameThickness * 1.5,
+              borderRadius: '50%',
+              background: 'radial-gradient(circle at center, rgba(6,182,212,0.5) 0%, transparent 70%)',
+              top: corner.startsWith('top') ? frameInset : 'auto',
+              bottom: corner.startsWith('bottom') ? frameInset : 'auto',
+              left: corner.endsWith('left') ? frameInset : 'auto',
+              right: corner.endsWith('right') ? frameInset : 'auto',
+              animationDelay: `${i * 1}s`,
+            }}
+            aria-hidden="true"
+          />
+        ))}
 
         {/* Ambient soft glow around the frame */}
         <div
