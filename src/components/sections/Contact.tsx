@@ -49,7 +49,7 @@ function SectionHeader({ title, subtitle, isVisible }: { title: string; subtitle
 
 function ContactContent({ isVisible }: { isVisible: boolean }) {
   return (
-    <div className="mt-12 grid lg:grid-cols-3 gap-8">
+    <div className="mt-12 max-w-3xl mx-auto">
       <ContactInfo isVisible={isVisible} />
     </div>
   );
@@ -57,7 +57,7 @@ function ContactContent({ isVisible }: { isVisible: boolean }) {
 
 function ContactInfo({ isVisible }: { isVisible: boolean }) {
   return (
-    <div className="lg:col-span-1 space-y-6" style={{
+    <div className="space-y-6" style={{
       animation: isVisible ? 'slideUp 0.6s ease-out forwards' : 'none',
       opacity: isVisible ? 1 : 0,
     }}>
