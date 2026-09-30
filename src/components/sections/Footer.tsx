@@ -11,7 +11,7 @@ export function Footer() {
   return (
     <footer className="bg-surface/50 border-t border-border/50" role="contentinfo">
       <div className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
-        <div className="grid md:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-12">
           {/* Brand */}
           <div className="md:col-span-2 lg:col-span-1 space-y-6">
             <a href="#hero" className="font-heading text-2xl font-bold text-text flex items-center gap-2" aria-label="Go to homepage">

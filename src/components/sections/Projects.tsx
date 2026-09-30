@@ -89,7 +89,7 @@ function FeaturedProjects({ projects, isVisible }: { projects: typeof portfolioD
   return (
     <div className="mt-12 space-y-8">
       <h3 className="font-heading text-2xl font-semibold text-text">Featured Projects</h3>
-      <div className="grid lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {projects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} isVisible={isVisible} featured={true} />
         ))}
