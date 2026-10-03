@@ -12,7 +12,7 @@ export function Hero() {
     <section
       ref={heroRef}
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      className="relative min-h-[calc(100vh-7rem)] flex items-center justify-center overflow-hidden pt-20"
       aria-labelledby="hero-title"
     >
       <HeroBackground />

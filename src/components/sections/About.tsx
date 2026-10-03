@@ -21,7 +21,7 @@ export function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="py-24 lg:py-32 px-6"
+      className="py-8 lg:py-12 px-6"
       aria-labelledby="about-title"
     >
       <div className="max-w-7xl mx-auto">
