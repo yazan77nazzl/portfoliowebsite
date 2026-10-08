@@ -227,6 +227,27 @@ export const portfolioData: PortfolioData = {
   ],
   "projects": [
     {
+      "id": "blossom-booking-pwa",
+      "title": "Booking Platform & PWA",
+      "description": "A complete booking platform with a responsive web interface and an installable Progressive Web App (PWA).",
+      "longDescription": "An end-to-end reservation application connecting the booking interface to backend APIs and Supabase. The PWA provides an installable app experience across mobile and desktop, with service worker integration.",
+      "technologies": [
+        "JavaScript",
+        "Supabase",
+        "REST APIs",
+        "PWA"
+      ],
+      "category": "fullstack",
+      "liveUrl": "https://blossomdreams-lb.com/",
+      "featured": true,
+      "highlights": [
+        "Complete reservation workflow",
+        "Backend API and Supabase integration",
+        "Installable PWA with service worker integration",
+        "Responsive interface for mobile and desktop"
+      ]
+    },
+    {
       "id": "apartment-reservation",
       "title": "Apartment Reservation Mobile App",
       "description": "A Flutter mobile application featuring real-time apartment booking and a user-friendly interface.",
