@@ -6,7 +6,7 @@ const icons = [Code2, Database, Smartphone, Braces, Workflow, Users];
 const descriptions = ['Interfaces that feel as good as they look.', 'The logic and data behind the experience.', 'Thoughtful experiences, on every screen.', 'The languages behind the applications.', 'A better process makes better software.', 'Communication, collaboration, and problem solving.'];
 export function Skills() {
   return <section id="skills" className="editorial-section" aria-labelledby="skills-title"><div className="editorial-container">
-    <SectionHeading id="skills-title" path="01 / expertise" title="The tools. The craft." subtitle="A practical toolkit for building across web, mobile, and backend." />
+    <SectionHeading id="skills-title" title="The tools. The craft." subtitle="A practical toolkit for building across web, mobile, and backend." />
     <div className="expertise-grid">{portfolioData.skills.map((group, index) => {
       const Icon = icons[index] || Code2;
       return <Reveal key={group.category} delay={index * 90}><article className={`expertise-card expertise-${index}`}>

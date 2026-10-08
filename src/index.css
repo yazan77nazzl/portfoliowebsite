@@ -173,10 +173,6 @@
   .stack-strip > span { display: inline-flex; align-items: center; gap: 20px; }
   .stack-strip > span > span { color: #818cf8; font-size: 9px; }
   .section-heading { margin-bottom: 38px; }
-  .section-endpoint { display: flex; align-items: center; gap: 12px; font: 11px var(--font-mono); margin-bottom: 20px; }
-  .endpoint-method { border: 1px solid #34d39935; color: #34d399; background: #34d39909; border-radius: 5px; padding: 4px 8px; font-size: 9px; font-weight: 600; }
-  .endpoint-path { color: #93a0ba; }
-  .endpoint-status { margin-left: auto; color: #52617d; font-size: 9px; }
   .section-title-row { display: flex; align-items: center; gap: 30px; }
   .section-title-row h2 { font: 700 clamp(28px, 3.5vw, 42px)/1.3 var(--font-heading); letter-spacing: -0.04em; }
   .section-title-line { flex: 1; height: 1px; background: linear-gradient(90deg, #818cf83b, transparent); }

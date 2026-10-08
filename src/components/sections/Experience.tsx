@@ -4,7 +4,7 @@ import { SectionHeading } from '../ui/SectionHeading';
 import { Reveal } from '../ui/Reveal';
 export function Experience() {
   return <section id="experience" className="editorial-section" aria-labelledby="experience-title"><div className="editorial-container">
-    <SectionHeading id="experience-title" path="02 / journey" title="Experience that shapes the work." subtitle="The teams, challenges, and ideas that have helped me grow." />
+    <SectionHeading id="experience-title" title="Experience that shapes the work." subtitle="The teams, challenges, and ideas that have helped me grow." />
     <div className="career-timeline">{portfolioData.experience.map((job,index) => <Reveal key={job.id} delay={70 * index}>
       <article className="career-entry"><div className="career-date"><span>{job.startDate}</span><span>{job.current ? 'Present' : job.endDate}</span><span className="career-node" aria-hidden="true" /></div>
       <div className="career-body"><div className="career-heading"><div><span className="career-role">{job.position}</span><h3>{job.company}</h3></div><ArrowUpRight size={24} aria-hidden="true" /></div>

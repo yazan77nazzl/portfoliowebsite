@@ -23,7 +23,7 @@ export function Projects() {
   const [filter,setFilter] = useState<string>('all');
   const projects = portfolioData.projects.filter(project => filter === 'all' || project.category === filter);
   return <section id="projects" className="editorial-section" aria-labelledby="projects-title"><div className="editorial-container">
-    <SectionHeading id="projects-title" path="03 / selected work" title="Ideas, brought to life." subtitle="A selection of applications built with care, curiosity, and code." />
+    <SectionHeading id="projects-title" title="Ideas, brought to life." subtitle="A selection of applications built with care, curiosity, and code." />
     <div className="work-toolbar"><div className="work-filters" aria-label="Filter projects">{filters.map(item=><button key={item.key} type="button" aria-pressed={filter===item.key} onClick={()=>setFilter(item.key)}>{item.label}</button>)}</div><span className="work-count" aria-live="polite">{projects.length} projects</span></div>
     <div className="work-grid" key={filter}>{projects.map((project,index)=><WorkCard key={project.id} project={project} index={index}/>)}</div>
     <Reveal><a className="github-note focus-ring" href={portfolioData.personal.github} target="_blank" rel="noopener noreferrer"><span>More code. More experiments.</span><span>Find me on GitHub <ArrowUpRight size={18} aria-hidden="true" /></span></a></Reveal>

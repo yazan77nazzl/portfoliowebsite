@@ -107,7 +107,6 @@ export function Navigation() {
           aria-label="Mobile navigation"
         >
           <div className="flex flex-col gap-2 p-6 pt-20">
-            <button onClick={() => setIsMobileMenuOpen(false)} className="self-end p-2 text-text focus-ring" aria-label="Close menu">Close</button>
             {navItems.map((item) => (
               <button
                 key={item.href}

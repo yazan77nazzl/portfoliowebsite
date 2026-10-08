@@ -12,7 +12,7 @@ export function About() {
    { icon: Layers, title: 'Connected systems', text: 'APIs, databases, and backend development with .NET Core.' },
  ];
  return <section id="about" className="editorial-section" aria-labelledby="about-title"><div className="editorial-container">
-   <SectionHeading id="about-title" path="about" title="A little about me." subtitle="The person behind the interfaces." />
+   <SectionHeading id="about-title" title="A little about me." subtitle="The person behind the interfaces." />
    <div className="about-editorial-grid">
      <Reveal><div className="about-story"><span className="about-kicker">DEVELOPER. BUILDER. ALWAYS LEARNING.</span>
        <h3>I care about how it works.<br/><span>And how it feels.</span></h3>
