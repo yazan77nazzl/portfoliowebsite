@@ -1,7 +1,7 @@
+import { Brand } from '../ui/Brand';
 import { useState, useEffect } from 'react';
-import { useIntersectionObserver } from '../../hooks';
-import { Button } from '../ui/Button';
-import { Menu, ChevronRight } from 'lucide-react';
+import { useActiveSection, useReducedMotion } from '../../hooks';
+import { Menu, ChevronRight, Download } from 'lucide-react';
 
 const navItems = [
   { href: '#hero', label: 'Home' },
@@ -12,13 +12,13 @@ const navItems = [
   { href: '#contact', label: 'Contact' },
 ];
 
+const sectionIds = navItems.map(item => item.href.slice(1));
+
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('#hero');
-
-  // Observe sections for active nav highlighting
-  const sectionRefs = navItems.map(() => useIntersectionObserver());
+  const activeSection = `#${useActiveSection(sectionIds)}`;
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,22 +28,19 @@ export function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Update active section based on intersection observer.
   useEffect(() => {
-    const visibleSections = navItems
-      .map((item, index) => ({ item, isVisible: sectionRefs[index][1] }))
-      .filter(({ isVisible }) => isVisible);
-
-    if (visibleSections.length > 0) {
-      // Get the last visible section (closest to top of viewport)
-      setActiveSection(visibleSections[visibleSections.length - 1].item.href);
-    }
-  }, sectionRefs.map(([, isVisible]) => isVisible));
+    if (!isMobileMenuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isMobileMenuOpen]);
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
       setIsMobileMenuOpen(false);
     }
   };
@@ -52,20 +49,17 @@ export function Navigation() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-bg/90 backdrop-blur-md border-b border-border/50' : 'bg-transparent'
+          isScrolled ? 'bg-bg/90 backdrop-blur-md border-b border-border/50' : 'bg-bg/70 backdrop-blur-md'
         }`}
         role="banner"
       >
         <nav className="max-w-7xl mx-auto px-6" aria-label="Main navigation">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <a href="#hero" className="font-heading text-xl font-bold text-text flex items-center gap-2" aria-label="Go to homepage">
-              <span className="text-primary">YN</span>
-              <span className="hidden sm:block">Yazan Nazzal</span>
-            </a>
+            <Brand />
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div className="hidden lg:flex items-center gap-5">
               {navItems.map((item) => (
                 <NavLink
                   key={item.href}
@@ -75,9 +69,7 @@ export function Navigation() {
                   onClick={scrollToSection}
                 />
               ))}
-              <Button variant="primary" size="sm" asChild>
-                <a href="#contact">Get In Touch</a>
-              </Button>
+              <a href="/Yazan_Nazzal_CV.pdf" download="Yazan_Nazzal_CV.pdf" className="nav-cv focus-ring">Download CV <Download size={14} aria-hidden="true" /></a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -107,6 +99,7 @@ export function Navigation() {
         {/* Drawer */}
         <div
           id="mobile-menu"
+          inert={!isMobileMenuOpen}
           className={`fixed top-0 right-0 z-50 h-full w-full max-w-sm lg:hidden bg-bg/90 backdrop-blur-md border-l border-border/50 overflow-y-auto transition-transform duration-300 ease-in-out ${
             isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
@@ -114,6 +107,7 @@ export function Navigation() {
           aria-label="Mobile navigation"
         >
           <div className="flex flex-col gap-2 p-6 pt-20">
+            <button onClick={() => setIsMobileMenuOpen(false)} className="self-end p-2 text-text focus-ring" aria-label="Close menu">Close</button>
             {navItems.map((item) => (
               <button
                 key={item.href}
@@ -127,9 +121,7 @@ export function Navigation() {
                 {item.label}
               </button>
             ))}
-            <Button variant="primary" className="mt-4 w-full" asChild>
-              <a href="#contact">Get In Touch</a>
-            </Button>
+            <a href="/Yazan_Nazzal_CV.pdf" download="Yazan_Nazzal_CV.pdf" className="design-button focus-ring" onClick={() => setIsMobileMenuOpen(false)}>Download CV <Download size={16} aria-hidden="true" /></a>
           </div>
         </div>
       </>

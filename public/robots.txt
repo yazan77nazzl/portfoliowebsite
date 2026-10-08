@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portfoliowebsite-eta-teal.vercel.app/sitemap.xml

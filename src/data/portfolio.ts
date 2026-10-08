@@ -1,248 +1,303 @@
 import type { PortfolioData } from '../types';
 
 export const portfolioData: PortfolioData = {
-  personal: {
-    name: 'Yazan Nazzal',
-    title: 'Software Developer',
-    location: 'Ramallah, Palestine',
-    email: 'Yazan98nazzal@gmail.com',
-    phone: '+972 566 017 708',
-    github: 'https://github.com/YazanNazal/portfoliowebsite',
-    linkedin: 'https://www.linkedin.com/in/yazan-nazzal-124287239/',
-    summary: 'Highly motivated and skilled Software Developer with comprehensive experience in frontend and full-stack development. Proficient in building scalable, maintainable, and performant applications using modern technologies such as React, React Native, Angular, and .NET Core. Strong problem solver with a passion for writing clean, efficient code and delivering elegant solutions that enhance user experience. Committed to continuous learning and contributing to innovative projects in dynamic team environments.',
+  "personal": {
+    "name": "Yazan Nazzal",
+    "title": "Software Developer",
+    "location": "Ramallah, Palestine",
+    "email": "Yazan98nazzal@gmail.com",
+    "phone": "+972 566017708",
+    "github": "https://github.com/YazanNazal",
+    "linkedin": "https://www.linkedin.com/in/yazan-nazzal-124287239/",
+    "summary": "Software Developer with experience in frontend and full-stack development using React, React Native, Angular, and .NET Core. Focused on building scalable, maintainable applications, writing clean code, and creating thoughtful user experiences through collaboration and continuous learning."
   },
-  experience: [
+  "experience": [
     {
-      id: 'emicrolearn',
-      company: 'eMicrolearn (Subsidiary of Pitman)',
-      position: 'Front-End Developer',
-      location: 'Remote',
-      startDate: 'Dec 2022',
-      endDate: 'Jul 2025',
-      current: false,
-      description: [
-        'Handling front-end development of the innovative iBook digital learning platform, delivering responsive and user-friendly interfaces.',
-        'Collaborate with cross-functional teams to build high-quality features, optimize performance, and improve user engagement globally.',
-        'Maintain clean, scalable React code following best practices and modern development standards.',
+      "id": "emicrolearn",
+      "company": "eMicrolearn (Subsidiary of Pitman)",
+      "position": "Front-End Developer",
+      "location": "Remote",
+      "startDate": "Dec 2022",
+      "endDate": "Jul 2025",
+      "current": false,
+      "description": [
+        "Handling front-end development of the innovative iBook digital learning platform, delivering responsive and user-friendly interfaces.",
+        "Collaborate with cross-functional teams to build high-quality features, optimize performance, and improve user engagement globally.",
+        "Maintain clean, scalable React code following best practices and modern development standards."
       ],
-      technologies: ['React', 'JavaScript', 'HTML5', 'CSS3', 'REST APIs', 'Agile'],
-      highlights: [
-        'Delivered responsive interfaces for a global digital learning platform',
-        'Collaborated with cross-functional teams across multiple time zones',
-        'Maintained high code quality standards through code reviews and best practices',
+      "technologies": [
+        "React",
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "REST APIs",
+        "Agile"
       ],
+      "highlights": [
+        "Delivered responsive interfaces for a global digital learning platform",
+        "Collaborated with cross-functional teams across multiple time zones",
+        "Maintained high code quality standards through code reviews and best practices"
+      ]
     },
     {
-      id: 'hexasol',
-      company: 'HexaSol',
-      position: 'React Developer',
-      location: 'Jenin',
-      startDate: 'Nov 2022',
-      endDate: 'Apr 2023',
-      current: false,
-      description: [
-        'Developed and maintained ReactJS web applications with a focus on performance and responsiveness.',
-        'Led front-end development for the "Hakini" React Native project.',
-        'Built an MVP mobile app for AZEZA, ensuring timely delivery and high quality.',
-        'Contributed actively to code reviews and team knowledge sharing.',
+      "id": "hexasol",
+      "company": "HexaSol",
+      "position": "React Developer",
+      "location": "Jenin",
+      "startDate": "Nov 2022",
+      "endDate": "Apr 2023",
+      "current": false,
+      "description": [
+        "Developed and maintained ReactJS web applications with a focus on performance and responsiveness.",
+        "Led front-end development for the \"Hakini\" React Native project.",
+        "Built an MVP mobile app for AZEZA, ensuring timely delivery and high quality.",
+        "Contributed actively to code reviews and team knowledge sharing."
       ],
-      technologies: ['React', 'React Native', 'JavaScript', 'Mobile Development', 'MVP Development'],
-      highlights: [
-        'Led front-end development for Hakini React Native project',
-        'Delivered AZEZA MVP mobile app on schedule',
-        'Active contributor to code reviews and team knowledge sharing',
+      "technologies": [
+        "React",
+        "React Native",
+        "JavaScript",
+        "Mobile Development",
+        "MVP Development"
       ],
+      "highlights": [
+        "Led front-end development for Hakini React Native project",
+        "Delivered AZEZA MVP mobile app on schedule",
+        "Active contributor to code reviews and team knowledge sharing"
+      ]
     },
     {
-      id: 'iconnect',
-      company: 'IConnect Tech',
-      position: 'Full-Stack Developer Trainee',
-      location: 'Ramallah',
-      startDate: 'Aug 2022',
-      endDate: 'Oct 2022',
-      current: false,
-      description: [
-        'Completed intensive training in Angular and .NET Core, building multiple projects to solidify full-stack development skills.',
-        'Gained practical experience in API development, database design, and frontend-backend integration under expert mentorship.',
+      "id": "iconnect",
+      "company": "IConnect Tech",
+      "position": "Full-Stack Developer Trainee",
+      "location": "Ramallah",
+      "startDate": "Aug 2022",
+      "endDate": "Oct 2022",
+      "current": false,
+      "description": [
+        "Completed intensive training in Angular and .NET Core, building multiple projects to solidify full-stack development skills.",
+        "Gained practical experience in API development, database design, and frontend-backend integration under expert mentorship."
       ],
-      technologies: ['Angular', '.NET Core', 'C#', 'SQL Server', 'API Development', 'Database Design'],
-      highlights: [
-        'Completed intensive full-stack training program',
-        'Built multiple projects integrating Angular frontend with .NET Core backend',
-        'Gained hands-on experience with API development and database design',
+      "technologies": [
+        "Angular",
+        ".NET Core",
+        "C#",
+        "SQL Server",
+        "API Development",
+        "Database Design"
       ],
-    },
+      "highlights": [
+        "Completed intensive full-stack training program",
+        "Built multiple projects integrating Angular frontend with .NET Core backend",
+        "Gained hands-on experience with API development and database design"
+      ]
+    }
   ],
-  education: [
+  "education": [
     {
-      id: 'bachelor',
-      degree: 'Bachelor of Computer System Engineering',
-      institution: 'Arab American University',
-      location: 'Jenin, Palestine',
-      startDate: '2018',
-      endDate: '2022',
-      description: 'Comprehensive computer systems engineering program covering software development, algorithms, data structures, and system architecture.',
+      "id": "bachelor",
+      "degree": "Bachelor of Computer System Engineering",
+      "institution": "Arab American University",
+      "location": "Jenin, Palestine"
     },
     {
-      id: 'highschool',
-      degree: 'High School Certificate – Tawjihi (Scientific)',
-      institution: 'Qabatiya Secondary School',
-      location: 'Jenin, Palestine',
-      startDate: '2017',
-      endDate: '2018',
-    },
+      "id": "highschool",
+      "degree": "High School Certificate – Tawjihi (Scientific)",
+      "institution": "Qabatiya Secondary School",
+      "location": "Jenin, Palestine"
+    }
   ],
-  skills: [
+  "skills": [
     {
-      category: 'Frontend',
-      skills: [
-        { name: 'React.js', level: 5 },
-        { name: 'React Native', level: 5 },
-        { name: 'Angular', level: 4 },
-        { name: 'HTML5', level: 5 },
-        { name: 'CSS3', level: 5 },
-        { name: 'JavaScript (ES6+)', level: 5 },
-        { name: 'TypeScript', level: 4 },
-        { name: 'Responsive Design', level: 5 },
-      ],
+      "category": "Frontend",
+      "skills": [
+        {
+          "name": "React JS"
+        },
+        {
+          "name": "React Native"
+        },
+        {
+          "name": "Angular"
+        },
+        {
+          "name": "HTML5"
+        },
+        {
+          "name": "CSS3"
+        }
+      ]
     },
     {
-      category: 'Backend',
-      skills: [
-        { name: '.NET Core', level: 4 },
-        { name: 'C#', level: 4 },
-        { name: 'Firebase', level: 4 },
-        { name: 'MongoDB', level: 3 },
-        { name: 'SQL Server', level: 4 },
-        { name: 'REST APIs', level: 5 },
-        { name: 'Node.js', level: 3 },
-      ],
+      "category": "Backend",
+      "skills": [
+        {
+          "name": ".NET Core"
+        },
+        {
+          "name": "Firebase"
+        },
+        {
+          "name": "MongoDB"
+        },
+        {
+          "name": "SQL Server"
+        }
+      ]
     },
     {
-      category: 'Mobile Development',
-      skills: [
-        { name: 'Flutter', level: 4 },
-        { name: 'React Native', level: 5 },
-        { name: 'Dart', level: 4 },
-        { name: 'Mobile UI/UX', level: 4 },
-      ],
+      "category": "Mobile Development",
+      "skills": [
+        {
+          "name": "Flutter"
+        },
+        {
+          "name": "React Native"
+        }
+      ]
     },
     {
-      category: 'Tools & Concepts',
-      skills: [
-        { name: 'Git & Version Control', level: 5 },
-        { name: 'Agile Methodologies', level: 4 },
-        { name: 'OOP & Data Structures', level: 5 },
-        { name: 'Problem Solving', level: 5 },
-        { name: 'Code Reviews', level: 4 },
-        { name: 'CI/CD', level: 3 },
-        { name: 'Testing', level: 3 },
-      ],
+      "category": "Programming Languages",
+      "skills": [
+        {
+          "name": "C++"
+        },
+        {
+          "name": "C#"
+        },
+        {
+          "name": "Dart"
+        },
+        {
+          "name": "JavaScript"
+        }
+      ]
     },
+    {
+      "category": "Tools & Concepts",
+      "skills": [
+        {
+          "name": "OOP"
+        },
+        {
+          "name": "Data Structures"
+        },
+        {
+          "name": "REST APIs"
+        },
+        {
+          "name": "Agile Methodologies"
+        }
+      ]
+    },
+    {
+      "category": "Soft Skills",
+      "skills": [
+        {
+          "name": "Problem Solving"
+        },
+        {
+          "name": "Collaboration"
+        },
+        {
+          "name": "Communication"
+        }
+      ]
+    }
   ],
-projects: [
+  "projects": [
     {
-      id: 'apartment-reservation',
-      title: 'Apartment Reservation Mobile App',
-      description: 'A comprehensive mobile application for real-time apartment booking with an intuitive user interface.',
-      longDescription: 'Developed a full-featured apartment reservation mobile app using Flutter, featuring real-time booking capabilities, user-friendly UI, and seamless payment integration. The app includes property listings, availability calendars, user profiles, and booking management.',
-      technologies: ['Flutter', 'Dart', 'Firebase', 'Real-time Database', 'Payment Integration'],
-      category: 'mobile',
-      featured: true,
-      highlights: [
-        'Real-time booking system with live availability updates',
-        'Intuitive user interface with smooth animations',
-        'Secure payment integration',
-        'User profile and booking history management',
+      "id": "apartment-reservation",
+      "title": "Apartment Reservation Mobile App",
+      "description": "A Flutter mobile application featuring real-time apartment booking and a user-friendly interface.",
+      "technologies": [
+        "Flutter"
       ],
-      role: 'Lead Developer',
-      outcome: 'Delivered a production-ready mobile application with real-time booking capabilities',
+      "category": "mobile",
+      "featured": true,
+      "highlights": [
+        "Real-time apartment booking",
+        "User-friendly mobile interface"
+      ]
     },
     {
-      id: 'auth-modules',
-      title: 'Login/Signup Authentication Modules',
-      description: 'Secure authentication systems implemented with React Native for mobile applications.',
-      longDescription: 'Built comprehensive authentication modules including user registration, login, password reset, email verification, and social login options. Implemented secure token management, biometric authentication support, and persistent session handling.',
-      technologies: ['React Native', 'JavaScript', 'Firebase Auth', 'AsyncStorage', 'JWT'],
-      category: 'mobile',
-      featured: true,
-      highlights: [
-        'Secure authentication with JWT token management',
-        'Biometric authentication support (FaceID/TouchID)',
-        'Social login integration (Google, Apple)',
-        'Password reset and email verification flows',
+      "id": "auth-modules",
+      "title": "Login/Signup Authentication Modules",
+      "description": "Secure login and signup authentication modules implemented using React Native.",
+      "technologies": [
+        "React Native"
       ],
-      role: 'Developer',
-      outcome: 'Reusable authentication modules adopted across multiple projects',
+      "category": "mobile",
+      "featured": true,
+      "highlights": [
+        "Login and signup modules",
+        "Secure authentication"
+      ]
     },
     {
-      id: 'online-store',
-      title: 'Online Store (E-Commerce Platform)',
-      description: 'Full-stack web application built with ASP.NET Core 6, featuring product management, shopping cart, and payment integration.',
-      longDescription: 'Developed a complete e-commerce platform with product catalog, category management, shopping cart, checkout flow, and payment processing. Includes admin dashboard for inventory management, order tracking, and customer management.',
-      technologies: ['ASP.NET Core 6', 'C#', 'Entity Framework', 'SQL Server', 'Razor Pages', 'Stripe/Payment Gateway'],
-      category: 'fullstack',
-      featured: true,
-      highlights: [
-        'Complete product catalog with categories and variants',
-        'Shopping cart with persistent sessions',
-        'Secure payment processing integration',
-        'Admin dashboard for inventory and order management',
-        'Role-based access control',
+      "id": "online-store",
+      "title": "Online Store (E-Commerce Platform)",
+      "description": "A full-stack ASP.NET Core 6 web application with product management and payment integration.",
+      "technologies": [
+        "ASP.NET Core 6"
       ],
-      role: 'Full-Stack Developer',
-      outcome: 'Production-ready e-commerce platform with full admin capabilities',
+      "category": "fullstack",
+      "featured": true,
+      "highlights": [
+        "Product management",
+        "Payment integration"
+      ]
     },
     {
-      id: 'guessing-game',
-      title: 'Guessing Game Mobile App',
-      description: 'Interactive React Native game application focusing on engaging gameplay and smooth animations.',
-      longDescription: 'Created an entertaining guessing game mobile app with multiple difficulty levels, score tracking, leaderboards, and polished animations. Features include timed rounds, hint system, and social sharing capabilities.',
-      technologies: ['React Native', 'JavaScript', 'Animated API', 'AsyncStorage', 'Game Logic'],
-      category: 'mobile',
-      featured: false,
-      highlights: [
-        'Multiple difficulty levels and game modes',
-        'Smooth 60fps animations using React Native Animated API',
-        'Local leaderboard with persistent storage',
-        'Social sharing functionality',
+      "id": "guessing-game",
+      "title": "Guessing Game Mobile App",
+      "description": "A React Native guessing game focused on interactive gameplay and smooth animations.",
+      "technologies": [
+        "React Native"
       ],
-      role: 'Developer',
-      outcome: 'Engaging mobile game with polished user experience',
+      "category": "mobile",
+      "featured": false,
+      "highlights": [
+        "Interactive gameplay",
+        "Smooth animations"
+      ]
     },
     {
-      id: 'poc-react',
-      title: 'ReactJS Proof of Concept',
-      description: 'Proof of concept to validate new design approaches and improve user engagement.',
-      longDescription: 'Developed a ReactJS proof of concept to explore and validate new UI/UX design approaches, component architectures, and user interaction patterns. The POC helped the team make informed decisions about technology choices and design direction for future projects.',
-      technologies: ['React', 'TypeScript', 'Modern CSS', 'Component Architecture', 'Design Systems'],
-      category: 'web',
-      featured: false,
-      highlights: [
-        'Validated new component architecture patterns',
-        'Tested modern design system approaches',
-        'Benchmark performance metrics',
-        'Documented findings for team adoption',
+      "id": "poc-react",
+      "title": "ReactJS Proof of Concept",
+      "description": "A ReactJS proof of concept created to validate new design approaches and improve user engagement.",
+      "technologies": [
+        "React JS"
       ],
-      role: 'Lead Developer',
-      outcome: 'Successful POC that informed technical decisions for subsequent projects',
-    },
+      "category": "web",
+      "featured": false,
+      "highlights": [
+        "Validation of new design approaches",
+        "Focus on user engagement"
+      ]
+    }
   ],
-  languages: [
-    { name: 'Arabic', proficiency: 'Native' },
-    { name: 'English', proficiency: 'Professional' },
-  ],
-  references: [
+  "languages": [
     {
-      name: 'Tahani Sabihat',
-      title: 'Manager at eMicrolearn (Pitman)',
-      email: 'Tahani.sbeahat@pitman-training.com',
-      company: 'eMicrolearn / Pitman Training',
+      "name": "Arabic",
+      "proficiency": "Native"
     },
     {
-      name: 'Mr. Nader',
-      title: 'Development Manager',
-      email: 'gridsapps@gmail.com',
-    },
+      "name": "English",
+      "proficiency": "Professional working"
+    }
   ],
+  "references": [
+    {
+      "name": "Tahani Sabihat",
+      "title": "Manager at eMicrolearn (Pitman)",
+      "email": "Tahani.sbeahat@pitman-training.com",
+      "company": "eMicrolearn / Pitman Training"
+    },
+    {
+      "name": "Mr. Nader",
+      "title": "Development Manager",
+      "email": "gridsapps@gmail.com"
+    }
+  ]
 };

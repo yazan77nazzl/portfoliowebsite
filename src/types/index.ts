@@ -27,8 +27,8 @@ export interface Education {
   degree: string;
   institution: string;
   location: string;
-  startDate: string;
-  endDate: string;
+  startDate?: string;
+  endDate?: string;
   description?: string;
 }
 
@@ -39,7 +39,7 @@ export interface SkillCategory {
 
 export interface Skill {
   name: string;
-  level: number; // 1-5
+  level?: number; // Optional self-assessment, 1-5
   icon?: string;
 }
 
@@ -61,7 +61,7 @@ export interface Project {
 
 export interface Language {
   name: string;
-  proficiency: 'Native' | 'Fluent' | 'Professional' | 'Conversational' | 'Basic';
+  proficiency: 'Native' | 'Fluent' | 'Professional' | 'Professional working' | 'Conversational' | 'Basic';
 }
 
 export interface Reference {

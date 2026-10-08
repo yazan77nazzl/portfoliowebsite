@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
-export function useIntersectionObserver(
-  options: IntersectionObserverInit = {}
+export function useIntersectionObserver<T extends HTMLElement = HTMLElement>(
+  { threshold = 0.1, rootMargin = '0px 0px -50px 0px', root = null }: IntersectionObserverInit = {}
 ) {
-  const elementRef = useRef<HTMLElement | null>(null);
+  const elementRef = useRef<T | null>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
 
   useEffect(() => {
@@ -12,12 +12,15 @@ export function useIntersectionObserver(
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsIntersecting(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsIntersecting(true);
+          observer.disconnect();
+        }
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
-        ...options,
+        threshold,
+        rootMargin,
+        root,
       }
     );
 
@@ -26,7 +29,7 @@ export function useIntersectionObserver(
     return () => {
       observer.disconnect();
     };
-  }, [options]);
+  }, [threshold, rootMargin, root]);
 
   return [elementRef, isIntersecting] as const;
 }
@@ -46,22 +49,15 @@ export function useScrollPosition() {
   return scrollY;
 }
 
+const motionQuery = '(prefers-reduced-motion: reduce)';
+function subscribeToMotion(onChange: () => void) {
+  const query = window.matchMedia(motionQuery);
+  query.addEventListener('change', onChange);
+  return () => query.removeEventListener('change', onChange);
+}
 export function useReducedMotion() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
-
-    const handleChange = (event: MediaQueryListEvent) => {
-      setPrefersReducedMotion(event.matches);
-    };
-
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
-
-  return prefersReducedMotion;
+  return useSyncExternalStore(subscribeToMotion,
+    () => window.matchMedia(motionQuery).matches, () => false);
 }
 
 export function useActiveSection(sectionIds: string[]) {
@@ -80,7 +76,7 @@ export function useActiveSection(sectionIds: string[]) {
         },
         {
           rootMargin: '-20% 0px -60% 0px',
-          threshold: 0.1,
+          threshold: 0,
         }
       );
 

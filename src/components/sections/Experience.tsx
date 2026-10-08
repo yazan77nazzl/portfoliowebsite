@@ -1,106 +1,17 @@
+import { ArrowUpRight, GraduationCap, MapPin } from 'lucide-react';
 import { portfolioData } from '../../data/portfolio';
-import { useIntersectionObserver } from '../../hooks';
-import { ExperienceCard } from './ExperienceCard';
-import { EducationCard } from './EducationCard';
-import { Badge } from '../ui/Badge';
-
+import { SectionHeading } from '../ui/SectionHeading';
+import { Reveal } from '../ui/Reveal';
 export function Experience() {
-  const [sectionRef, isVisible] = useIntersectionObserver();
-
-  return (
-    <section
-      ref={sectionRef}
-      id="experience"
-      className="py-24 lg:py-32 px-6"
-      aria-labelledby="experience-title"
-    >
-      <div className="max-w-7xl mx-auto">
-        <SectionHeader
-          title="Experience"
-          subtitle="My professional journey"
-          isVisible={isVisible}
-        />
-
-        <div className="mt-12 relative">
-          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-border/50 hidden lg:block" aria-hidden="true" />
-
-          <div className="space-y-8">
-            {portfolioData.experience.map((job, index) => (
-              <ExperienceCard key={job.id} job={job} index={index} isVisible={isVisible} />
-            ))}
-          </div>
-        </div>
-
-        {/* Experience Summary */}
-        <ExperienceSummary isVisible={isVisible} />
-
-        <div className="mt-20">
-          <h3 className="font-heading text-2xl font-semibold text-text mb-8 text-center">
-            Education
-          </h3>
-          <div className="space-y-6">
-            {portfolioData.education.map((edu, index) => (
-              <EducationCard key={edu.id} edu={edu} index={index} isVisible={isVisible} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function SectionHeader({ title, subtitle, isVisible }: { title: string; subtitle: string; isVisible: boolean }) {
-  return (
-    <div
-      className="text-center max-w-3xl mx-auto"
-      style={{
-        animation: isVisible ? 'slideUp 0.6s ease-out forwards' : 'none',
-        opacity: isVisible ? 1 : 0,
-      }}
-    >
-      <Badge variant="primary" size="lg" className="mb-4">
-        {title}
-      </Badge>
-      <h2 id="experience-title" className="font-heading text-4xl lg:text-5xl font-bold text-text tracking-tight mb-4">
-        {title}
-      </h2>
-      <p className="text-lg text-text-muted">{subtitle}</p>
-    </div>
-  );
-}
-
-function ExperienceSummary({ isVisible }: { isVisible: boolean }) {
-  const totalYears = portfolioData.experience.reduce((acc, job) => {
-    const start = new Date(job.startDate).getTime();
-    const end = job.current ? Date.now() : new Date(job.endDate).getTime();
-    return acc + (end - start);
-  }, 0);
-  const years = Math.floor(totalYears / (1000 * 60 * 60 * 24 * 365));
-  const companies = portfolioData.experience.length;
-  const technologies = new Set(
-    portfolioData.experience.flatMap((job) => job.technologies)
-  ).size;
-
-  return (
-    <div
-      className="grid sm:grid-cols-3 gap-6 mt-16"
-      style={{
-        animation: isVisible ? 'slideUp 0.6s ease-out 200ms forwards' : 'none',
-        opacity: isVisible ? 1 : 0,
-      }}
-    >
-      <div className="bg-surface border border-border/50 rounded-2xl p-6 text-center hover:shadow-lg transition-shadow">
-        <div className="text-4xl font-heading font-bold text-text mb-1">{years}+</div>
-        <div className="text-text-muted">Years Experience</div>
-      </div>
-      <div className="bg-surface border border-border/50 rounded-2xl p-6 text-center hover:shadow-lg transition-shadow">
-        <div className="text-4xl font-heading font-bold text-text mb-1">{companies}</div>
-        <div className="text-text-muted">Companies</div>
-      </div>
-      <div className="bg-surface border border-border/50 rounded-2xl p-6 text-center hover:shadow-lg transition-shadow">
-        <div className="text-4xl font-heading font-bold text-text mb-1">{technologies}+</div>
-        <div className="text-text-muted">Technologies</div>
-      </div>
-    </div>
-  );
+  return <section id="experience" className="editorial-section" aria-labelledby="experience-title"><div className="editorial-container">
+    <SectionHeading id="experience-title" path="02 / journey" title="Experience that shapes the work." subtitle="The teams, challenges, and ideas that have helped me grow." />
+    <div className="career-timeline">{portfolioData.experience.map((job,index) => <Reveal key={job.id} delay={70 * index}>
+      <article className="career-entry"><div className="career-date"><span>{job.startDate}</span><span>{job.current ? 'Present' : job.endDate}</span><span className="career-node" aria-hidden="true" /></div>
+      <div className="career-body"><div className="career-heading"><div><span className="career-role">{job.position}</span><h3>{job.company}</h3></div><ArrowUpRight size={24} aria-hidden="true" /></div>
+        <p className="career-location"><MapPin size={13} aria-hidden="true" /> {job.location}</p>
+        <ul>{job.description.map(point => <li key={point}>{point}</li>)}</ul>
+        <div className="technology-tags">{job.technologies.map(tech => <span key={tech}>{tech}</span>)}</div>
+      </div></article></Reveal>)}</div>
+    <div className="education-grid">{portfolioData.education.map((edu,index) => <Reveal key={edu.id} delay={index * 90}><article className="education-note"><GraduationCap size={26} strokeWidth={1.3} aria-hidden="true" /><div>{edu.startDate && <span>{edu.startDate} / {edu.endDate}</span>}<h3>{edu.degree}</h3><p>{edu.institution}</p></div></article></Reveal>)}</div>
+  </div></section>;
 }
