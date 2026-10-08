@@ -41,3 +41,6 @@ coverage/
 
 # Vite
 .vite/
+
+# Local CV drafts and exports
+deliverables/
