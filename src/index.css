@@ -194,7 +194,7 @@
 }
 @media (max-width: 767px) {
   .portfolio-hero { padding: 104px 24px 28px; }
-  .hero-layout { display: flex; flex-direction: column; gap: 52px; align-items: stretch; }
+  .hero-layout { display: flex; flex-direction: column-reverse; gap: 52px; align-items: stretch; }
   .hero-name { font-size: clamp(42px, 10vw, 64px); }
   .hero-pitch { font-size: 15px; }
   .hero-eyebrow { font-size: 9px; }
