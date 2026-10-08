@@ -1,9 +1,9 @@
-import { Code2, Database, Smartphone, Workflow, ArrowUpRight, Braces, Users } from 'lucide-react';
+import { Code2, Database, Smartphone, Workflow, ArrowUpRight, Braces, Users, Bot } from 'lucide-react';
 import { portfolioData } from '../../data/portfolio';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Reveal } from '../ui/Reveal';
-const icons = [Code2, Database, Smartphone, Braces, Workflow, Users];
-const descriptions = ['Interfaces that feel as good as they look.', 'The logic and data behind the experience.', 'Thoughtful experiences, on every screen.', 'The languages behind the applications.', 'A better process makes better software.', 'Communication, collaboration, and problem solving.'];
+const icons = [Code2, Database, Smartphone, Braces, Workflow, Users, Bot];
+const descriptions = ['Interfaces that feel as good as they look.', 'The logic and data behind the experience.', 'Thoughtful experiences, on every screen.', 'The languages behind the applications.', 'A better process makes better software.', 'Communication, collaboration, and problem solving.', 'Practical experience with AI tools and agents in development.'];
 export function Skills() {
   return <section id="skills" className="editorial-section" aria-labelledby="skills-title"><div className="editorial-container">
     <SectionHeading id="skills-title" title="The tools. The craft." subtitle="A practical toolkit for building across web, mobile, and backend." />

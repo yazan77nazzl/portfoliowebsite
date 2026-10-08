@@ -357,3 +357,4 @@
   .nav-cv { display: inline-flex; align-items: center; gap: 8px; color: #a5b4fc; font-size: 12px; border: 1px solid #818cf830; padding: 8px 12px; border-radius: 7px; }
   .expertise-4 { --expertise-color: #f0a0c4; }.expertise-5 { --expertise-color: #6dd6c0; }
 }
+@layer components { .expertise-6 { --expertise-color: #a5b4fc; }.expertise-grid > .scroll-reveal:last-child:nth-child(odd) { grid-column: 1 / -1; } }

@@ -142,6 +142,12 @@ export const portfolioData: PortfolioData = {
         },
         {
           "name": "SQL Server"
+        },
+        {
+          "name": "Supabase"
+        },
+        {
+          "name": "FastAPI"
         }
       ]
     },
@@ -201,6 +207,20 @@ export const portfolioData: PortfolioData = {
         },
         {
           "name": "Communication"
+        }
+      ]
+    },
+    {
+      "category": "AI & Agents",
+      "skills": [
+        {
+          "name": "AI-assisted development"
+        },
+        {
+          "name": "Working with AI agents"
+        },
+        {
+          "name": "AI tools"
         }
       ]
     }
