@@ -120,7 +120,6 @@ export function Navigation() {
                 {item.label}
               </button>
             ))}
-            <a href="/Yazan_Nazzal_CV.pdf" download="Yazan_Nazzal_CV.pdf" className="design-button focus-ring" onClick={() => setIsMobileMenuOpen(false)}>Download CV <Download size={16} aria-hidden="true" /></a>
           </div>
         </div>
       </>
