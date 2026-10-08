@@ -1,3 +1,4 @@
+import { LinkedInIcon } from '../ui/LinkedInIcon';
 import { ArrowUpRight, Code2, Smartphone, Layers, MapPin } from 'lucide-react';
 import { portfolioData } from '../../data/portfolio';
 import { GitHubIcon } from '../ui/GitHubIcon';
@@ -26,7 +27,7 @@ export function About() {
        </dl><div>{'};'}</div></div>
        <div className="profile-location"><MapPin size={15} aria-hidden="true" />{location}<span className="status-dot" /></div>
        <div className="profile-languages">{portfolioData.languages.map(language=><span key={language.name}>{language.name}<small>{language.proficiency}</small></span>)}</div>
-       <div className="profile-social"><a href={github} target="_blank" rel="noopener noreferrer" className="focus-ring"><GitHubIcon size={17}/> GitHub <ArrowUpRight size={13} aria-hidden="true"/></a><a href={linkedin} target="_blank" rel="noopener noreferrer" className="focus-ring">LinkedIn <ArrowUpRight size={13} aria-hidden="true"/></a></div>
+       <div className="profile-social"><a href={github} target="_blank" rel="noopener noreferrer" className="focus-ring"><GitHubIcon size={17}/> GitHub <ArrowUpRight size={13} aria-hidden="true"/></a><a href={linkedin} target="_blank" rel="noopener noreferrer" className="focus-ring"><LinkedInIcon size={16} /> LinkedIn <ArrowUpRight size={13} aria-hidden="true"/></a></div>
      </aside></Reveal>
    </div>
    <div className="about-specialties">{specialties.map((item,index)=><Reveal key={item.title} delay={index*90}><article><item.icon size={23} strokeWidth={1.4} aria-hidden="true"/><div><h3>{item.title}</h3><p>{item.text}</p></div></article></Reveal>)}</div>

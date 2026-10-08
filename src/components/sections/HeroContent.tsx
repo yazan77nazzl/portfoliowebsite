@@ -1,6 +1,7 @@
+import { LinkedInIcon } from '../ui/LinkedInIcon';
 import { EmailLink } from '../ui/EmailLink';
 import { GitHubIcon } from '../ui/GitHubIcon';
-import { ArrowDown, ArrowUpRight, User, Mail, MapPin, Download } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Mail, MapPin, Download } from 'lucide-react';
 import { portfolioData } from '../../data/portfolio';
 import { useEffect, useState } from 'react';
 import { usePointerTilt } from '../../hooks/usePointerTilt';
@@ -67,7 +68,7 @@ export function HeroContent({ name, location, email, github, linkedin, isVisible
           </div>
           <div className="hero-socials">
             <a href={github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="focus-ring"><GitHubIcon size={19} /></a>
-            <a href={linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="focus-ring"><User size={19} /></a>
+            <a href={linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="focus-ring"><LinkedInIcon size={19} /></a>
             <EmailLink email={email} aria-label="Email" className="focus-ring"><Mail size={19} /></EmailLink>
             <span>// let's connect</span>
           </div>
