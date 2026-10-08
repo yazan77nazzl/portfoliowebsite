@@ -238,7 +238,6 @@ export const portfolioData: PortfolioData = {
         "PWA"
       ],
       "category": "fullstack",
-      "liveUrl": "https://blossomdreams-lb.com/",
       "featured": true,
       "highlights": [
         "Complete reservation workflow",
